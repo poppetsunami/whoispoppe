@@ -1,0 +1,78 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 0.3s ease-out;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.3s ease-out;
+}
+
+/* Print styles for PDF generation */
+@media print {
+  /* Page setup for standard letter size */
+  @page {
+    margin: 0.3in 0.5in;
+    size: letter portrait;
+  }
+  
+  /* Ensure fonts and colors render properly */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  
+  /* Resume container for print - scale to fit letter size */
+  .resume-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    /* Scale down to fit: total content width is ~980px, printable area is ~720px */
+    /* 720/980 = 0.735 */
+    transform: scale(0.73) !important;
+    transform-origin: top left !important;
+  }
+  
+  /* Ensure the inner content doesn't overflow */
+  .resume-container > * {
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+}
+
+/* Mobile responsive styles - enable scrolling */
+@media screen and (max-width: 768px) {
+  .resume-container {
+    /* Keep natural size on mobile, allow scrolling */
+    min-width: 980px;
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+}
