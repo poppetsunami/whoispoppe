@@ -18,7 +18,7 @@ const experiences: ExperienceItem[] = [
   {
     role: "Principal UX Designer",
     company: "KAMP Technologies",
-    dates: "Mar 2025 – Present",
+    dates: "Mar 2025 – Apr 2026",
     summary: "Designing connected platforms integrating machine telemetry, fleet monitoring, and operational analytics.",
     overview: "At KAMP, I lead product design for a connected platform that integrates machine telemetry, fleet monitoring, and operational analytics. The platform aggregates real-time data from equipment in the field and translates it into actionable insights for operators, service teams, and business leaders. The challenge is not simply visualizing machine data, but transforming complex telemetry into systems that support operational decision making.",
     contributions: [
@@ -142,7 +142,7 @@ export function Experience() {
       </motion.h2>
       
       <Accordion.Root type="single" collapsible className="space-y-6">
-        {experiences.map((exp, index) => {
+        {[experiences[1], experiences[0], ...experiences.slice(2)].map((exp, index) => {
           const isCurrentRole = exp.dates.includes('Present');
           
           return (
