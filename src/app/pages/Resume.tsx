@@ -1,21 +1,14 @@
-import { useRef } from "react";
 import { Link } from "react-router";
 import { ArrowLeft, Download } from "lucide-react";
 import { motion } from "motion/react";
-import PoppeResume from "../../imports/PoppeResume";
+
+const resumePath = "/resume/Stephanie_Poppe_Branded_Resume.pdf";
 
 export function Resume() {
-  const resumeRef = useRef<HTMLDivElement>(null);
-
-  const handleDownloadPDF = () => {
-    // Use the browser's native print dialog which preserves fonts and styling
-    window.print();
-  };
-
   return (
-    <div className="min-h-screen bg-[#F7F7F7] py-8 print:bg-white print:py-0 print:min-h-0">
+    <div className="min-h-screen bg-[#F7F7F7] py-8">
       {/* Navigation Bar */}
-      <div className="max-w-7xl mx-auto px-6 mb-8 print:hidden">
+      <div className="max-w-7xl mx-auto px-6 mb-8">
         <div className="flex items-center justify-between">
           <Link to="/">
             <motion.button
@@ -29,40 +22,41 @@ export function Resume() {
             </motion.button>
           </Link>
 
-          <motion.button
-            onClick={handleDownloadPDF}
+          <motion.a
+            href={resumePath}
+            download="Stephanie_Poppe_Branded_Resume.pdf"
             className="flex items-center gap-2 px-6 py-3 bg-[#6EDFA3] text-[#111111] rounded-lg hover:bg-[#5fce92] transition-all duration-300 shadow-md hover:shadow-lg"
             style={{ fontSize: "16px", fontWeight: 600 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <Download className="w-5 h-5" />
-            <span>Download as PDF</span>
-          </motion.button>
+            <span>Download PDF</span>
+          </motion.a>
         </div>
       </div>
 
       {/* Resume Container */}
-      <div className="max-w-7xl mx-auto px-6 print:px-0 print:max-w-none print:mx-auto md:px-6 px-2">
-        <div 
-          ref={resumeRef}
-          className="bg-white shadow-2xl rounded-lg overflow-auto print:shadow-none print:rounded-none resume-container"
-        >
-          <PoppeResume />
-        </div>
+      <div className="max-w-7xl mx-auto px-2 md:px-6">
+        <iframe
+          src={`${resumePath}#view=FitH`}
+          title="Stephanie Poppe branded resume"
+          className="w-full h-[calc(100vh-11rem)] min-h-[700px] bg-white shadow-2xl rounded-lg"
+        />
       </div>
 
       {/* Mobile Download Button */}
-      <div className="max-w-7xl mx-auto px-6 mt-8 md:hidden print:hidden">
-        <motion.button
-          onClick={handleDownloadPDF}
+      <div className="max-w-7xl mx-auto px-6 mt-8 md:hidden">
+        <motion.a
+          href={resumePath}
+          download="Stephanie_Poppe_Branded_Resume.pdf"
           className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#6EDFA3] text-[#111111] rounded-lg hover:bg-[#5fce92] transition-all duration-300 shadow-md"
           style={{ fontSize: "16px", fontWeight: 600 }}
           whileTap={{ scale: 0.95 }}
         >
           <Download className="w-5 h-5" />
-          <span>Download as PDF</span>
-        </motion.button>
+          <span>Download PDF</span>
+        </motion.a>
       </div>
     </div>
   );
