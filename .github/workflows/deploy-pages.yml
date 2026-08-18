@@ -29,8 +29,11 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-      - name: Add single-page app fallback
-        run: cp dist/index.html dist/404.html
+      - name: Add single-page app routes
+        run: |
+          cp dist/index.html dist/404.html
+          mkdir -p dist/resume
+          cp dist/index.html dist/resume/index.html
       - name: Set up Pages
         uses: actions/configure-pages@v5
       - name: Upload site
