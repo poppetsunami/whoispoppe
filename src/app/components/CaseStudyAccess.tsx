@@ -9,15 +9,12 @@ export function CaseStudyAccess() {
     <section ref={ref} className="max-w-4xl mx-auto px-6 py-16 md:py-24">
       <motion.div 
         className="bg-white p-12 rounded-2xl text-center relative overflow-hidden"
-        style={{ 
+        style={{
           border: '2px solid #E5E5E5',
         }}
         initial={{ opacity: 0, y: 40 }}
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
-        whileHover={{ 
-          borderColor: '#6EDFA3',
-        }}
       >
         {/* Animated Background Pattern */}
         <motion.div

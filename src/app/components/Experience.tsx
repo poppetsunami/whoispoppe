@@ -16,14 +16,36 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
+    role: "Lead UX Researcher & Designer",
+    company: "Moral",
+    dates: "Jun 2025 – Present",
+    summary: "Lead UX research and product strategy for regulated platforms supporting clinical-trial operations.",
+    overview: "At Moral, I lead UX research and product design strategy for regulated pharmaceutical platforms supporting clinical trial operations. These systems are used by research and operations teams responsible for coordinating complex clinical studies across organizations. The environment is highly regulated, and workflows must support compliance, accuracy, and coordination across multiple stakeholders.",
+    contributions: [
+      "Lead UX research across clinical operations workflows",
+      "Define product design strategy for regulated pharmaceutical systems",
+      "Align product, engineering, clinical, research, and operations teams through workshops and prioritization",
+      "Translate complex regulatory and operational requirements into usable workflows",
+      "Identify usability risks in highly regulated environments where errors carry significant consequences",
+      "Translate research with Fortune 100 and Fortune 500 pharmaceutical organizations into product direction",
+    ],
+    approach: [
+      "Clinical trial platforms sit at the intersection of operational complexity, regulatory oversight, and scientific research. The challenge is not simply designing interfaces, but helping teams navigate the tension between compliance requirements and usability.",
+      "My approach has focused heavily on understanding real operational workflows before proposing design solutions. That means speaking directly with users involved in trial coordination, identifying where systems break down, and mapping how information moves between teams.",
+      "Another critical aspect of this work is facilitating alignment among stakeholders with very different priorities. Product teams, compliance experts, engineers, and research organizations all bring different perspectives. A significant portion of my role involves creating shared understanding of problems before moving into design solutions.",
+      "By grounding conversations in user needs and operational realities, we're able to design systems that both satisfy regulatory requirements and genuinely support the people running clinical trials.",
+    ],
+    caseStudyLink: "Request Case Study Access",
+  },
+  {
     role: "Principal UX Designer",
     company: "KAMP Technologies",
-    dates: "Mar 2025 – Apr 2026",
-    summary: "Designing connected platforms integrating machine telemetry, fleet monitoring, and operational analytics.",
+    dates: "Mar 2025 – Mar 2026",
+    summary: "Lead product design for a connected platform integrating machine telemetry, fleet monitoring, and operational analytics.",
     overview: "At KAMP, I lead product design for a connected platform that integrates machine telemetry, fleet monitoring, and operational analytics. The platform aggregates real-time data from equipment in the field and translates it into actionable insights for operators, service teams, and business leaders. The challenge is not simply visualizing machine data, but transforming complex telemetry into systems that support operational decision making.",
     contributions: [
-      "Defined the foundational interaction models for translating machine telemetry into actionable insights",
-      "Designed dashboards and reporting workflows supporting fleet and equipment management",
+      "Define interaction models, dashboards, reporting workflows, and foundational patterns that turn machine data into actionable insights",
+      "Partner with product and engineering leaders to align customer needs, technical constraints, product direction, and UX strategy",
       "Established core design patterns and UI architecture for the platform",
       "Worked closely with engineering to translate data structures into usable product features",
       "Facilitated product discussions around prioritization, user needs, and platform direction",
@@ -34,28 +56,6 @@ const experiences: ExperienceItem[] = [
       "Rather than simply exposing machine data, I worked with engineering and product leadership to identify the decisions users actually need to make: diagnosing machine health, understanding fleet performance, and identifying operational risks early. From there, we structured the product around workflows rather than raw metrics.",
       "Another important part of the work has been establishing design foundations for a platform that did not previously have a dedicated design function. This includes defining interaction patterns, clarifying information hierarchies, and building alignment across engineering and product teams around how the system should evolve.",
       "Because connected platforms often grow rapidly and become fragmented, a major focus has been designing structures that can scale as the product expands.",
-    ],
-    caseStudyLink: "Request Case Study Access",
-  },
-  {
-    role: "Lead UX Designer",
-    company: "Moral",
-    dates: "Jun 2025 – Present",
-    summary: "Leading UX research and product design strategy for regulated clinical trial systems.",
-    overview: "At Moral, I lead UX research and product design strategy for regulated pharmaceutical platforms supporting clinical trial operations. These systems are used by research and operations teams responsible for coordinating complex clinical studies across organizations. The environment is highly regulated, and workflows must support compliance, accuracy, and coordination across multiple stakeholders.",
-    contributions: [
-      "Lead UX research across clinical operations workflows",
-      "Define product design strategy for regulated pharmaceutical systems",
-      "Facilitate stakeholder workshops aligning product, engineering, and operations teams",
-      "Translate complex regulatory and operational requirements into usable workflows",
-      "Identify usability risks in highly regulated environments where errors carry significant consequences",
-      "Partner with Fortune 100 and Fortune 500 pharmaceutical organizations",
-    ],
-    approach: [
-      "Clinical trial platforms sit at the intersection of operational complexity, regulatory oversight, and scientific research. The challenge is not simply designing interfaces, but helping teams navigate the tension between compliance requirements and usability.",
-      "My approach has focused heavily on understanding real operational workflows before proposing design solutions. That means speaking directly with users involved in trial coordination, identifying where systems break down, and mapping how information moves between teams.",
-      "Another critical aspect of this work is facilitating alignment among stakeholders with very different priorities. Product teams, compliance experts, engineers, and research organizations all bring different perspectives. A significant portion of my role involves creating shared understanding of problems before moving into design solutions.",
-      "By grounding conversations in user needs and operational realities, we're able to design systems that both satisfy regulatory requirements and genuinely support the people running clinical trials.",
     ],
     caseStudyLink: "Request Case Study Access",
   },
@@ -102,13 +102,13 @@ const experiences: ExperienceItem[] = [
   },
   {
     role: "Senior Interaction Designer",
-    company: "Software Engineering Professionals",
+    company: "Software Engineering Professionals (SEP)",
     dates: "Oct 2018 – May 2021",
     summary: "Led discovery and interaction design for enterprise products and connected equipment platforms.",
     overview: "At SEP, I consulted on UX strategy and interaction design across a wide range of enterprise and consumer products. Many of the projects involved complex technical systems used by specialized professional audiences. My work focused on helping teams move from feature-driven thinking to more coherent product experiences.",
     contributions: [
       "Led discovery and interaction design for enterprise platforms",
-      "Designed connected equipment diagnostics tools used by distributed service networks",
+      "Led discovery and design for machine-diagnostics tools supporting 2,000+ service shops",
       "Supported development of systems used by thousands of technicians and service providers",
       "Facilitated cross-functional design and product workshops",
       "Helped teams translate technical capabilities into usable product experiences",
@@ -142,7 +142,7 @@ export function Experience() {
       </motion.h2>
       
       <Accordion.Root type="single" collapsible className="space-y-6">
-        {[experiences[1], experiences[0], ...experiences.slice(2)].map((exp, index) => {
+        {experiences.map((exp, index) => {
           const isCurrentRole = exp.dates.includes('Present');
           
           return (

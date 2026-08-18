@@ -26,48 +26,12 @@ function AnimatedCounter({ end, duration = 2 }: { end: number; duration?: number
 }
 
 const highlights = [
-  {
-    number: 12,
-    prefix: "",
-    suffix: "+",
-    unit: "years",
-    label: "Digital product & experience strategy",
-  },
-  {
-    number: 2500,
-    prefix: "",
-    suffix: "",
-    unit: "stores",
-    label: "Enterprise fulfillment experiences",
-  },
-  {
-    number: 6,
-    prefix: "~$",
-    suffix: "M",
-    unit: "",
-    label: "Labor savings influenced by redesigned fulfillment workflows",
-  },
-  {
-    number: 15,
-    prefix: "",
-    suffix: "%",
-    unit: "",
-    label: "Improvement in picking speed",
-  },
-  {
-    number: 60,
-    prefix: "",
-    suffix: "+",
-    unit: "facilities",
-    label: "Warehouse platform modernization",
-  },
-  {
-    number: 600,
-    prefix: "",
-    suffix: "",
-    unit: "organizations",
-    label: "Enterprise CSR platform users",
-  },
+  { number: 12,   prefix: "",   suffix: "+", unit: "years",         label: "Digital product & experience strategy" },
+  { number: 2500, prefix: "",   suffix: "",  unit: "stores",        label: "Enterprise fulfillment experiences" },
+  { number: 6,    prefix: "~$", suffix: "M", unit: "",              label: "Labor savings influenced by redesigned fulfillment workflows" },
+  { number: 15,   prefix: "",   suffix: "%", unit: "",              label: "Improvement in picking speed" },
+  { number: 60,   prefix: "",   suffix: "+", unit: "facilities",    label: "Warehouse platform modernization" },
+  { number: 600,  prefix: "",   suffix: "",  unit: "organizations", label: "Enterprise CSR platform users" },
 ];
 
 export function ImpactHighlights() {
@@ -81,10 +45,7 @@ export function ImpactHighlights() {
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
-        <h2
-          className="mb-3"
-          style={{ fontSize: "32px", fontWeight: 600, color: "#111111" }}
-        >
+        <h2 className="mb-3" style={{ fontSize: "32px", fontWeight: 600, color: "#111111" }}>
           Strategic Impact
         </h2>
         <p className="text-[#666666]" style={{ fontSize: "16px", fontWeight: 400 }}>
@@ -96,17 +57,11 @@ export function ImpactHighlights() {
         {highlights.map((h, index) => (
           <motion.div
             key={index}
-            className="bg-[#F7F7F7] p-8 group hover:bg-white transition-colors duration-300 relative overflow-hidden cursor-default"
+            className="bg-[#F7F7F7] p-8 relative overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: index * 0.08 }}
           >
-            {/* Accent bar on hover */}
-            <motion.div
-              className="absolute top-0 left-0 w-full h-1 bg-[#6EDFA3] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-400"
-            />
-
-            {/* Number */}
             <div className="mb-3">
               <span
                 className="text-[#111111]"
@@ -117,20 +72,12 @@ export function ImpactHighlights() {
                 {h.suffix}
               </span>
               {h.unit && (
-                <span
-                  className="text-[#6EDFA3] ml-2"
-                  style={{ fontSize: "18px", fontWeight: 600 }}
-                >
+                <span className="text-[#6EDFA3] ml-2" style={{ fontSize: "18px", fontWeight: 600 }}>
                   {h.unit}
                 </span>
               )}
             </div>
-
-            {/* Label */}
-            <p
-              className="text-[#666666]"
-              style={{ fontSize: "14px", fontWeight: 400, lineHeight: 1.5 }}
-            >
+            <p className="text-[#666666]" style={{ fontSize: "14px", fontWeight: 400, lineHeight: 1.5 }}>
               {h.label}
             </p>
           </motion.div>

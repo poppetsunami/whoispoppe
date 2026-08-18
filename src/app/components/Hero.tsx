@@ -1,6 +1,5 @@
 import { Download, ArrowRight, User } from "lucide-react";
 import { motion } from "motion/react";
-import { Link } from "react-router";
 
 export function Hero() {
   return (
@@ -124,14 +123,15 @@ export function Hero() {
                 </motion.a>
 
                 {/* Secondary: Download Resume */}
-                <Link
-                  to="/resume"
+                <a
+                  href="/resume.pdf"
+                  download="Stephanie_Poppe_Resume.pdf"
                   className="flex items-center gap-1.5 text-[#666666] hover:text-[#111111] transition-colors"
                   style={{ fontSize: "14px", fontWeight: 500 }}
                 >
                   <Download className="w-4 h-4" />
                   <span>Resume</span>
-                </Link>
+                </a>
               </motion.div>
             </div>
           </div>
@@ -155,7 +155,6 @@ export function Hero() {
               src="https://static.wixstatic.com/media/97cbb1_64e54ba6d69c480b964de8e85ff2db89~mv2.jpeg/v1/fill/w_1030,h_1456,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/97cbb1_64e54ba6d69c480b964de8e85ff2db89~mv2.jpeg"
               alt="Portrait of Poppe"
               className="rounded-2xl shadow-lg w-full max-w-md relative z-10"
-              whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             />
           </div>

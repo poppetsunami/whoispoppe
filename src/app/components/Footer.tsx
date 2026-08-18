@@ -1,5 +1,4 @@
 import { Linkedin, Mail, FileText } from "lucide-react";
-import { Link } from "react-router";
 
 export function Footer() {
   return (
@@ -8,43 +7,44 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Left - Tagline */}
           <div className="text-center md:text-left">
-            <p 
-              className="text-[#666666]" 
-              style={{ 
-                fontSize: '16px', 
-                fontWeight: 400 
+            <p
+              className="text-[#666666]"
+              style={{
+                fontSize: '16px',
+                fontWeight: 400
               }}
             >
               Digital Product & Experience Strategist · Indianapolis
             </p>
           </div>
-          
+
           {/* Right - Links */}
           <div className="flex items-center gap-6">
-            <a 
-              href="https://www.linkedin.com/in/whoispoppe/" 
-              target="_blank" 
+            <a
+              href="https://www.linkedin.com/in/whoispoppe/"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-[#666666] hover:text-[#111111] transition-colors"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-5 h-5" />
             </a>
-            <a 
+            <a
               href="mailto:whoispoppe@gmail.com"
               className="text-[#666666] hover:text-[#111111] transition-colors"
               aria-label="Email"
             >
               <Mail className="w-5 h-5" />
             </a>
-            <Link 
-              to="/resume"
+            <a
+              href="/resume.pdf"
+              download="Stephanie_Poppe_Resume.pdf"
               className="text-[#666666] hover:text-[#111111] transition-colors flex items-center gap-2"
               style={{ fontSize: '14px', fontWeight: 500 }}
             >
               <FileText className="w-5 h-5" />
               Resume
-            </Link>
+            </a>
           </div>
         </div>
       </div>

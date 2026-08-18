@@ -57,14 +57,13 @@ const projects: ProjectCard[] = [
 function ProjectCard({ project, index, isVisible }: { project: ProjectCard; index: number; isVisible: boolean }) {
   return (
     <motion.div
-      className="bg-white rounded-2xl border-2 border-gray-100 overflow-hidden group hover:border-[#6EDFA3] transition-colors duration-300 flex flex-col"
+      className="bg-white rounded-2xl border-2 border-gray-100 overflow-hidden flex flex-col"
       initial={{ opacity: 0, y: 30 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.12 }}
-      whileHover={{ y: -6, boxShadow: "0 24px 48px rgba(0,0,0,0.07)" }}
     >
-      {/* Top accent bar */}
-      <div className="h-1 bg-[#6EDFA3] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      {/* Top accent bar — always visible */}
+      <div className="h-1 bg-[#6EDFA3]" />
 
       <div className="p-8 flex flex-col flex-1">
         {/* Label */}

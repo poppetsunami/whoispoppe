@@ -80,69 +80,22 @@ export function LeadingDesign() {
 
       <div className="grid md:grid-cols-2 gap-6">
         {principles.map((principle, index) => (
-          <motion.div 
-            key={index} 
-            className="bg-white p-8 rounded-xl group relative overflow-hidden cursor-pointer border-2 border-gray-100 hover:border-[#6EDFA3] transition-colors"
+          <motion.div
+            key={index}
+            className="bg-white p-8 rounded-xl border-2 border-gray-100"
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ 
-              y: -5,
-              boxShadow: "0 20px 40px rgba(0, 0, 0, 0.08)"
-            }}
           >
-            {/* Animated Border */}
-            <motion.div
-              className="absolute inset-0 rounded-xl"
-              style={{
-                background: 'linear-gradient(135deg, #6EDFA3, #111111)',
-                opacity: 0,
-              }}
-              whileHover={{ opacity: 0.05 }}
-              transition={{ duration: 0.3 }}
-            />
-            
-            {/* Content Container */}
-            <div className="relative z-10">
-              <motion.div 
-                className="w-16 h-16 bg-[#6EDFA3] bg-opacity-10 rounded-full flex items-center justify-center mb-6 text-[#111111]"
-                whileHover={{ 
-                  scale: 1.1,
-                  backgroundColor: "rgba(110, 223, 163, 0.2)",
-                  rotate: 360
-                }}
-                transition={{ duration: 0.6 }}
-              >
-                {principle.icon}
-              </motion.div>
-              <h3 
-                className="mb-3" 
-                style={{ 
-                  fontSize: '20px', 
-                  fontWeight: 600, 
-                  color: '#111111' 
-                }}
-              >
-                {principle.title}
-              </h3>
-              <p 
-                className="text-[#666666]" 
-                style={{ 
-                  fontSize: '16px', 
-                  fontWeight: 400,
-                  lineHeight: 1.6
-                }}
-              >
-                {principle.description}
-              </p>
+            <div className="w-16 h-16 bg-[#6EDFA3] bg-opacity-10 rounded-full flex items-center justify-center mb-6 text-[#111111]">
+              {principle.icon}
             </div>
-
-            {/* Decorative Element */}
-            <motion.div
-              className="absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-[#6EDFA3] opacity-0 blur-2xl"
-              whileHover={{ opacity: 0.1 }}
-              transition={{ duration: 0.3 }}
-            />
+            <h3 className="mb-3" style={{ fontSize: '20px', fontWeight: 600, color: '#111111' }}>
+              {principle.title}
+            </h3>
+            <p className="text-[#666666]" style={{ fontSize: '16px', fontWeight: 400, lineHeight: 1.6 }}>
+              {principle.description}
+            </p>
           </motion.div>
         ))}
       </div>

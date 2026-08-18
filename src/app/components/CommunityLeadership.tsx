@@ -16,7 +16,7 @@ const leadership: LeadershipItem[] = [
   },
   {
     icon: <Users className="w-6 h-6" />,
-    role: "Co-Founder",
+    role: "Co-Founder / Local Leader",
     organization: "IxDA Indianapolis",
   },
   {
@@ -31,13 +31,9 @@ export function CommunityLeadership() {
 
   return (
     <section ref={ref} className="max-w-5xl mx-auto px-6 py-16 md:py-24">
-      <motion.h2 
-        className="mb-12" 
-        style={{ 
-          fontSize: '32px', 
-          fontWeight: 600, 
-          color: '#111111' 
-        }}
+      <motion.h2
+        className="mb-12"
+        style={{ fontSize: '32px', fontWeight: 600, color: '#111111' }}
         initial={{ opacity: 0, y: 20 }}
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
@@ -46,64 +42,22 @@ export function CommunityLeadership() {
       </motion.h2>
       <div className="grid md:grid-cols-3 gap-6">
         {leadership.map((item, index) => (
-          <motion.div 
-            key={index} 
-            className="bg-white p-6 rounded-xl border-2 border-gray-200 relative overflow-hidden group cursor-pointer"
+          <motion.div
+            key={index}
+            className="bg-white p-6 rounded-xl border-2 border-gray-200"
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ 
-              y: -5,
-              borderColor: '#6EDFA3',
-              boxShadow: "0 10px 30px rgba(110, 223, 163, 0.15)"
-            }}
           >
-            {/* Gradient Overlay on Hover */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-[#6EDFA3]/5 to-transparent opacity-0"
-              whileHover={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-
-            <motion.div 
-              className="w-12 h-12 bg-[#6EDFA3] bg-opacity-10 rounded-lg flex items-center justify-center mb-4 text-[#111111] relative z-10"
-              whileHover={{ 
-                scale: 1.1,
-                backgroundColor: "rgba(110, 223, 163, 0.2)",
-              }}
-              transition={{ duration: 0.3 }}
-            >
+            <div className="w-12 h-12 bg-[#6EDFA3] bg-opacity-10 rounded-lg flex items-center justify-center mb-4 text-[#111111]">
               {item.icon}
-            </motion.div>
-            <p 
-              className="text-[#666666] mb-2 relative z-10" 
-              style={{ 
-                fontSize: '14px', 
-                fontWeight: 500 
-              }}
-            >
+            </div>
+            <p className="text-[#666666] mb-2" style={{ fontSize: '14px', fontWeight: 500 }}>
               {item.role}
             </p>
-            <h3 
-              className="text-[#111111] relative z-10" 
-              style={{ 
-                fontSize: '18px', 
-                fontWeight: 600 
-              }}
-            >
+            <h3 className="text-[#111111]" style={{ fontSize: '18px', fontWeight: 600 }}>
               {item.organization}
             </h3>
-
-            {/* Decorative Corner Element */}
-            <motion.div
-              className="absolute bottom-0 right-0 w-16 h-16 opacity-0"
-              style={{
-                background: 'linear-gradient(135deg, transparent 50%, #6EDFA3 50%)',
-                borderRadius: '0 0 12px 0',
-              }}
-              whileHover={{ opacity: 0.1 }}
-              transition={{ duration: 0.3 }}
-            />
           </motion.div>
         ))}
       </div>
