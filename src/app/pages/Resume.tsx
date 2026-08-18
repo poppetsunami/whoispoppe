@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { ArrowLeft, Download } from "lucide-react";
 import { motion } from "motion/react";
 
-const resumePath = "/resume/Stephanie_Poppe_Branded_Resume.pdf";
+const resumePath = "/assets/resume/Stephanie_Poppe_Branded_Resume.pdf";
 
 export function Resume() {
   return (
