@@ -1,33 +1,44 @@
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
-import { Workflow, Target, Brain, TreeDeciduous } from "lucide-react";
+import { Search, Layers, TrendingUp, Wrench, Users2 } from "lucide-react";
 
-interface Principle {
+interface Capability {
   icon: React.ReactNode;
+  verb: string;
   title: string;
   description: string;
 }
 
-const principles: Principle[] = [
+const capabilities: Capability[] = [
   {
-    icon: <Workflow className="w-8 h-8" />,
-    title: "Start with the real workflow",
-    description: "Understand how work actually happens before designing solutions. Observe patterns, pain points, and workarounds that reveal system needs.",
+    icon: <Search className="w-6 h-6" />,
+    verb: "01",
+    title: "Discover",
+    description: "Research complex ecosystems, customers, workflows, behaviors, constraints, and unmet needs. I go into the field, talk to real people, and map how work actually happens before touching a single wireframe.",
   },
   {
-    icon: <Target className="w-8 h-8" />,
-    title: "Design for decision making",
-    description: "Good operational systems surface the right information at the right time, enabling confident decisions under pressure.",
+    icon: <Layers className="w-6 h-6" />,
+    verb: "02",
+    title: "Frame",
+    description: "Turn ambiguity and fragmented evidence into clear opportunity areas and product direction. This is often the hardest step — and the most important. The right framing changes everything downstream.",
   },
   {
-    icon: <Brain className="w-8 h-8" />,
-    title: "Reduce cognitive load",
-    description: "Complex environments require interfaces that reduce mental overhead, not add to it. Clarity and consistency matter most.",
+    icon: <TrendingUp className="w-6 h-6" />,
+    verb: "03",
+    title: "Strategize",
+    description: "Connect customer value, business outcomes, operational realities, and technical constraints into a coherent direction. Strategy without grounding is just guessing.",
   },
   {
-    icon: <TreeDeciduous className="w-8 h-8" />,
-    title: "Design for evolution",
-    description: "Systems need to adapt as organizations change. Build flexibility and extensibility into the foundation, not as an afterthought.",
+    icon: <Wrench className="w-6 h-6" />,
+    verb: "04",
+    title: "Make",
+    description: "Prototype products, services, workflows, and experiences so ideas can be tested rather than merely discussed. Artifacts create accountability and surface assumptions that documents never will.",
+  },
+  {
+    icon: <Users2 className="w-6 h-6" />,
+    verb: "05",
+    title: "Align",
+    description: "Bring product, engineering, design, research, operations, clinical experts, and leadership together around decisions. Alignment is not a soft skill — it is how complex things actually ship.",
   },
 ];
 
@@ -36,113 +47,74 @@ export function SystemsApproach() {
 
   return (
     <section ref={ref} className="max-w-7xl mx-auto px-6 py-16 md:py-24">
-      <motion.h2 
-        className="mb-6" 
-        style={{ 
-          fontSize: '32px', 
-          fontWeight: 600, 
-          color: '#111111' 
-        }}
+      <motion.div
+        className="mb-14 max-w-3xl"
         initial={{ opacity: 0, y: 20 }}
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
-        My Approach to Systems Design
-      </motion.h2>
-      
-      <motion.div
-        className="mb-12 max-w-4xl"
-        initial={{ opacity: 0, y: 20 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: 0.1 }}
-      >
-        <p 
-          className="text-[#666666] mb-4"
-          style={{
-            fontSize: '18px',
-            fontWeight: 400,
-            lineHeight: 1.7,
-          }}
+        <h2
+          className="mb-4"
+          style={{ fontSize: "32px", fontWeight: 600, color: "#111111" }}
         >
-          Many of the products I work on sit at the intersection of people, operations, and complex technical systems. These environments often evolve organically over time, accumulating layers of processes, tools, and assumptions.
-        </p>
-        <p 
+          How I Work
+        </h2>
+        <p
           className="text-[#666666]"
-          style={{
-            fontSize: '18px',
-            fontWeight: 400,
-            lineHeight: 1.7,
-          }}
+          style={{ fontSize: "18px", fontWeight: 400, lineHeight: 1.7 }}
         >
-          My role as a designer is often to help teams step back and see the system clearly—understanding how information, decisions, and workflows move through an organization before designing solutions.
+          Five integrated capabilities, not five separate services. In practice they overlap, loop back, and inform each other — because real product work does not follow a clean linear path.
         </p>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        {principles.map((principle, index) => (
-          <motion.div 
-            key={index} 
-            className="bg-white p-8 rounded-xl group relative overflow-hidden cursor-pointer border-2 border-gray-100 hover:border-[#6EDFA3] transition-colors"
+      {/* Capability Cards — horizontal scroll on mobile, 5-col grid on lg */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {capabilities.map((cap, index) => (
+          <motion.div
+            key={index}
+            className="bg-white rounded-2xl p-6 border-2 border-gray-100 group hover:border-[#6EDFA3] transition-colors duration-300 relative overflow-hidden flex flex-col"
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ 
-              y: -5,
-              boxShadow: "0 20px 40px rgba(0, 0, 0, 0.08)"
-            }}
+            transition={{ duration: 0.5, delay: index * 0.08 }}
+            whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(0,0,0,0.07)" }}
           >
-            {/* Animated Border */}
+            {/* Green hover fill */}
             <motion.div
-              className="absolute inset-0 rounded-xl"
-              style={{
-                background: 'linear-gradient(135deg, #6EDFA3, #111111)',
-                opacity: 0,
-              }}
-              whileHover={{ opacity: 0.05 }}
-              transition={{ duration: 0.3 }}
+              className="absolute inset-0 bg-[#6EDFA3] opacity-0 group-hover:opacity-5 transition-opacity duration-300"
             />
-            
-            {/* Content Container */}
-            <div className="relative z-10">
-              <motion.div 
-                className="w-16 h-16 bg-[#6EDFA3] bg-opacity-10 rounded-full flex items-center justify-center mb-6 text-[#111111]"
-                whileHover={{ 
-                  scale: 1.1,
-                  backgroundColor: "rgba(110, 223, 163, 0.2)",
-                  rotate: 360
-                }}
-                transition={{ duration: 0.6 }}
-              >
-                {principle.icon}
-              </motion.div>
-              <h3 
-                className="mb-3" 
-                style={{ 
-                  fontSize: '20px', 
-                  fontWeight: 600, 
-                  color: '#111111' 
-                }}
-              >
-                {principle.title}
-              </h3>
-              <p 
-                className="text-[#666666]" 
-                style={{ 
-                  fontSize: '16px', 
-                  fontWeight: 400,
-                  lineHeight: 1.6
-                }}
-              >
-                {principle.description}
-              </p>
-            </div>
 
-            {/* Decorative Element */}
+            {/* Verb/number */}
+            <span
+              className="text-[#6EDFA3] mb-4 block"
+              style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em" }}
+            >
+              {cap.verb}
+            </span>
+
+            {/* Icon */}
             <motion.div
-              className="absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-[#6EDFA3] opacity-0 blur-2xl"
-              whileHover={{ opacity: 0.1 }}
+              className="w-12 h-12 bg-[#111111] rounded-xl flex items-center justify-center mb-4 text-white relative z-10 flex-shrink-0"
+              whileHover={{ scale: 1.08, rotate: 6 }}
               transition={{ duration: 0.3 }}
-            />
+            >
+              {cap.icon}
+            </motion.div>
+
+            {/* Title */}
+            <h3
+              className="text-[#111111] mb-3 relative z-10"
+              style={{ fontSize: "20px", fontWeight: 700 }}
+            >
+              {cap.title}
+            </h3>
+
+            {/* Description */}
+            <p
+              className="text-[#666666] relative z-10"
+              style={{ fontSize: "14px", fontWeight: 400, lineHeight: 1.65 }}
+            >
+              {cap.description}
+            </p>
           </motion.div>
         ))}
       </div>

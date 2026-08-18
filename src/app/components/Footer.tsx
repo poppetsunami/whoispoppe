@@ -15,7 +15,7 @@ export function Footer() {
                 fontWeight: 400 
               }}
             >
-              Designing systems that help people do their work better.
+              Digital Product & Experience Strategist · Indianapolis
             </p>
           </div>
           

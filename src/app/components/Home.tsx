@@ -1,9 +1,9 @@
 import { Hero } from "./Hero";
 import { Philosophy } from "./Philosophy";
 import { ImpactHighlights } from "./ImpactHighlights";
-import { Experience } from "./Experience";
+import { SelectedWork } from "./SelectedWork";
 import { SystemsApproach } from "./SystemsApproach";
-import { CoreValues } from "./CoreValues";
+import { Experience } from "./Experience";
 import { LeadingDesign } from "./LeadingDesign";
 import { CommunityLeadership } from "./CommunityLeadership";
 import { CaseStudyAccess } from "./CaseStudyAccess";
@@ -15,11 +15,13 @@ export function Home() {
       <Hero />
       <Philosophy />
       <ImpactHighlights />
-      <Experience />
+      <SelectedWork />
       <SystemsApproach />
-      <CoreValues />
+      <Experience />
       <LeadingDesign />
-      <CommunityLeadership />
+      <div id="about">
+        <CommunityLeadership />
+      </div>
       <CaseStudyAccess />
       <Footer />
     </div>
