@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
-import { Search, Layers, TrendingUp, Wrench, Users2 } from "lucide-react";
+import { Search, Layers, TrendingUp, Wrench, Users2, Sparkles } from "lucide-react";
 
 interface Capability {
   icon: React.ReactNode;
@@ -59,6 +59,25 @@ export function SystemsApproach() {
         <p className="text-[#666666]" style={{ fontSize: "18px", fontWeight: 400, lineHeight: 1.7 }}>
           Five integrated capabilities, not five separate services. In practice they overlap, loop back, and inform each other — because real product work does not follow a clean linear path.
         </p>
+      </motion.div>
+
+      <motion.div
+        className="mb-8 rounded-2xl border-2 border-[#6EDFA3] bg-white p-6 md:p-7 flex flex-col md:flex-row gap-5 md:items-start"
+        initial={{ opacity: 0, y: 20 }}
+        animate={isVisible ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.1 }}
+      >
+        <div className="w-12 h-12 rounded-xl bg-[#111111] text-[#6EDFA3] flex items-center justify-center flex-shrink-0">
+          <Sparkles className="w-6 h-6" />
+        </div>
+        <div>
+          <h3 className="text-[#111111] mb-2" style={{ fontSize: "20px", fontWeight: 700 }}>
+            AI-native product practice
+          </h3>
+          <p className="text-[#666666]" style={{ fontSize: "16px", fontWeight: 400, lineHeight: 1.7 }}>
+            I use AI tools to accelerate research synthesis, specification drafting, prototype exploration, acceptance criteria, and implementation review—while retaining human judgment, traceability, and decision accountability.
+          </p>
+        </div>
       </motion.div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
