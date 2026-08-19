@@ -4,11 +4,24 @@ import test from "node:test";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("Selected Work presents the agricultural service engagement evidence", async () => {
+test("Selected Work presents exactly six distinct, anonymized case studies", async () => {
   const source = await read("src/app/components/SelectedWork.tsx");
 
-  for (const evidence of [
+  const projectEntries = source.match(/\n  \{\n    label:/g) ?? [];
+  assert.equal(projectEntries.length, 6);
+
+  for (const title of [
     "Agricultural Equipment Service Platform",
+    "KAMP Connected Equipment Platform",
+    "Kroger Permanent Container Labels",
+    "Governed Clinical Knowledge & Trial Intelligence",
+    "Connected Home Water Platform",
+    "Kroger Warehouse Claims Platform",
+  ]) {
+    assert.match(source, new RegExp(title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+
+  for (const evidence of [
     "three-month discovery",
     "10 dealers",
     "approximately 50 products",
@@ -20,14 +33,10 @@ test("Selected Work presents the agricultural service engagement evidence", asyn
   ]) {
     assert.match(source, new RegExp(evidence, "i"));
   }
-});
 
-test("Selected Work frames connected mower telemetry as operational decisions", async () => {
-  const source = await read("src/app/components/SelectedWork.tsx");
-
-  assert.match(source, /Connected Equipment Telemetry & Fleet Operations/);
-  assert.match(source, /mower telemetry/i);
-  assert.match(source, /operators, service teams, and business leaders/i);
+  for (const protectedName of ["John Deere", "Culligan", "Smartconnect", "MOUX"]) {
+    assert.doesNotMatch(source, new RegExp(protectedName, "i"));
+  }
 });
 
 test("How I Work includes accountable AI-native practice", async () => {
