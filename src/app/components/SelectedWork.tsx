@@ -15,6 +15,16 @@ interface ProjectCard {
 
 const projects: ProjectCard[] = [
   {
+    label: "Agricultural Equipment Service",
+    title: "Agricultural Equipment Service Platform",
+    problem: "The application was the lowest-performing product in a portfolio of approximately 50 products. Agricultural equipment dealers and service centers were navigating service and reporting friction that limited adoption and satisfaction.",
+    role: "Led a three-month discovery, interviewed 10 dealers, and iterated product concepts. Partnered with two product owners and business stakeholders to define a configurable work-management direction and prioritized roadmap, then continued through six months of dual-track delivery.",
+    scale: "10 dealer interviews · Two product owners · Discovery through delivery",
+    outcome: "Contributed to increased adoption and satisfaction with fewer support calls. Exact metrics were owned by the client.",
+    capabilities: ["Customer Discovery", "Product Direction", "Roadmap Alignment", "Dual-track Delivery"],
+    confidential: true,
+  },
+  {
     label: "Enterprise Retail Operations",
     title: "Kroger Fulfillment Platform",
     problem: "Store employees were completing online order fulfillment through fragmented, inefficient workflows that slowed operations and increased labor costs across a national footprint.",
@@ -44,11 +54,11 @@ const projects: ProjectCard[] = [
   },
   {
     label: "Connected Products & Analytics",
-    title: "Industrial Fleet Telemetry Platform",
-    problem: "Machine telemetry data existed in volume but was not translating into actionable operational intelligence for the teams responsible for fleet health and performance.",
-    role: "Defined foundational interaction models for translating telemetry into operational insight. Established design patterns and UI architecture for a platform without prior design function.",
+    title: "Connected Equipment Telemetry & Fleet Operations",
+    problem: "Mower telemetry and other machine data existed in volume but were not translating into the operational decisions needed by operators, service teams, and business leaders.",
+    role: "Defined the progression from raw machine data to actionable fleet-health, diagnostics, and performance workflows. Established foundational interaction models, design patterns, and UI architecture for a platform without a prior design function.",
     scale: "Multi-site fleet operations · Real-time equipment monitoring",
-    outcome: "Operational insight models enabling faster diagnosis and prioritization. Design foundations supporting platform scalability.",
+    outcome: "Operational insight models helped teams move from monitoring telemetry to diagnosing issues, prioritizing service, and understanding fleet performance. Design foundations supported platform scalability.",
     capabilities: ["Data Experience Design", "Systems Architecture", "Product Direction", "Design Systems"],
     confidential: true,
   },
