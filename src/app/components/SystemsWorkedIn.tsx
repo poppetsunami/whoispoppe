@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { SectionHeading } from "./SectionHeading";
 
 const domains = [
   { title: "Healthcare & Clinical Operations", evidence: "Regulated workflows, governed knowledge, and trial operations." },
@@ -14,7 +15,7 @@ export function SystemsWorkedIn() {
   return (
     <section ref={ref} aria-labelledby="systems-title" className="max-w-7xl mx-auto px-6 py-16 md:py-24">
       <motion.div className="mb-10 max-w-3xl" initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
-        <h2 id="systems-title" className="text-[#111111] mb-3" style={{ fontSize: "32px", fontWeight: 600 }}>Systems I’ve Worked In</h2>
+        <SectionHeading id="systems-title" className="mb-3" label="Systems I’ve Worked In" accent="Worked In" />
         <p className="text-[#666666]" style={{ fontSize: "17px", lineHeight: 1.65 }}>Different domains, similar challenge: understand a complicated ecosystem quickly and make it more useful, coherent, and humane.</p>
       </motion.div>
       <div className="grid gap-px overflow-hidden rounded-2xl border border-gray-200 bg-gray-200 sm:grid-cols-2 lg:grid-cols-5">

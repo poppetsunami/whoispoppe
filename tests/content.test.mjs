@@ -24,6 +24,8 @@ test("Homepage leads with product strategy and research leadership", async () =>
   assert.match(hero, /Product & Experience Strategist/);
   assert.match(hero, /Research Leader/);
   assert.match(hero, /turn research into product strategy, better workflows, and useful technology/i);
+  assert.equal((hero.match(/h-3 bg-\[#6EDFA3\]/g) ?? []).length, 2);
+  assert.doesNotMatch(hero, /text-\[#666666\][^>]*>· Research Leader/);
 
   for (const pillar of ["Product Strategy", "Research Leadership & Enablement", "Experience & Service Design"]) {
     assert.match(whatIDo, new RegExp(escapeRegExp(pillar)));
@@ -245,6 +247,32 @@ test("Mobile impact metrics wrap and case-study cards never begin hidden", async
   assert.match(impact, /sm:ml-2/);
   assert.match(selectedWork, /initial=\{false\}/);
   assert.doesNotMatch(selectedWork, /initial=\{\{ opacity: 0, y: 30 \}\}/);
+});
+
+test("Homepage section headings share the bold green-highlight treatment", async () => {
+  const heading = await readOptional("src/app/components/SectionHeading.tsx");
+  assert.match(heading, /fontWeight: 700/);
+  assert.match(heading, /color: tone === "dark" \? "#ffffff" : "#111111"/);
+  assert.match(heading, /bg-\[#6EDFA3\]/);
+  assert.match(heading, /absolute bottom-0 left-0 h-2/);
+
+  const expectations = new Map([
+    ["src/app/components/WhatIDo.tsx", "direction"],
+    ["src/app/components/ImpactHighlights.tsx", "Impact"],
+    ["src/app/components/AIAndEmergingTechnology.tsx", "experimentation."],
+    ["src/app/components/SelectedWork.tsx", "Work"],
+    ["src/app/components/SystemsWorkedIn.tsx", "Worked In"],
+    ["src/app/components/SystemsApproach.tsx", "Work"],
+    ["src/app/components/Experience.tsx", "Experience"],
+    ["src/app/components/CommunityLeadership.tsx", "Me"],
+    ["src/app/components/CaseStudyAccess.tsx", "Access"],
+  ]);
+
+  for (const [path, accent] of expectations) {
+    const source = await read(path);
+    assert.match(source, /<SectionHeading/);
+    assert.match(source, new RegExp(`accent=["{]${escapeRegExp(accent)}`));
+  }
 });
 
 test("KAMP engagement dates remain March 2025 through March 2026", async () => {

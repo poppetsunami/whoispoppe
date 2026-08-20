@@ -1,6 +1,7 @@
 import { ArrowRight, Bot, BrainCircuit, Network, ShieldCheck } from "lucide-react";
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { SectionHeading } from "./SectionHeading";
 
 const practices = [
   { icon: <BrainCircuit className="h-6 w-6" />, title: "Research Intelligence & AI Enablement", description: "Use AI to increase synthesis capacity, improve retrieval, preserve institutional knowledge, and make research evidence easier to reuse." },
@@ -16,7 +17,7 @@ export function AIAndEmergingTechnology() {
       <div className="max-w-7xl mx-auto px-6">
         <motion.div className="mb-12 max-w-3xl" initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
           <p className="text-[#6EDFA3] font-bold uppercase tracking-[0.12em] text-xs mb-3">AI & Emerging Technology</p>
-          <h2 id="ai-title" className="mb-4" style={{ fontSize: "32px", fontWeight: 600 }}>Strategy grounded in hands-on experimentation.</h2>
+          <SectionHeading id="ai-title" tone="dark" className="mb-4" label="Strategy grounded in hands-on experimentation." accent="experimentation." />
           <p className="text-gray-300" style={{ fontSize: "18px", lineHeight: 1.7 }}>I explore what AI makes possible by building with it—while keeping expert judgment, governance, and real user value at the center.</p>
         </motion.div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">

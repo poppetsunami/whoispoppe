@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { useEffect, useState } from "react";
+import { SectionHeading } from "./SectionHeading";
 
 function AnimatedCounter({ end, duration = 2 }: { end: number; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -45,9 +46,7 @@ export function ImpactHighlights() {
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="mb-3" style={{ fontSize: "32px", fontWeight: 600, color: "#111111" }}>
-          Strategic Impact
-        </h2>
+        <SectionHeading className="mb-3" label="Strategic Impact" accent="Impact" />
         <p className="text-[#666666]" style={{ fontSize: "16px", fontWeight: 400 }}>
           Evidence of scale from recent work — not decorative statistics.
         </p>
