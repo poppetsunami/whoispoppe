@@ -7,7 +7,7 @@ export function CaseStudyAccess() {
   const { ref, isVisible } = useScrollAnimation(0.3);
 
   return (
-    <section ref={ref} className="max-w-4xl mx-auto px-6 py-16 md:py-24">
+    <section ref={ref} className="max-w-4xl mx-auto px-6 py-10 md:py-20">
       <motion.div 
         className="bg-white p-12 rounded-2xl text-center relative overflow-hidden"
         style={{

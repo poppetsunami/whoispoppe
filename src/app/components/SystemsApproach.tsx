@@ -47,7 +47,7 @@ export function SystemsApproach() {
   const { ref, isVisible } = useScrollAnimation(0.2);
 
   return (
-    <section ref={ref} className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+    <section ref={ref} className="max-w-7xl mx-auto px-6 py-10 md:py-20">
       <motion.div
         className="mb-14 max-w-3xl"
         initial={{ opacity: 0, y: 20 }}

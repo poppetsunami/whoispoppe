@@ -13,7 +13,7 @@ const domains = [
 export function SystemsWorkedIn() {
   const { ref, isVisible } = useScrollAnimation(0.15);
   return (
-    <section ref={ref} aria-labelledby="systems-title" className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+    <section ref={ref} aria-labelledby="systems-title" className="max-w-7xl mx-auto px-6 py-10 md:py-20">
       <motion.div className="mb-10 max-w-3xl" initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
         <SectionHeading id="systems-title" className="mb-3" label="Systems I’ve Worked In" accent="Worked In" />
         <p className="text-[#666666]" style={{ fontSize: "17px", lineHeight: 1.65 }}>Different domains, similar challenge: understand a complicated ecosystem quickly and make it more useful, coherent, and humane.</p>
