@@ -69,6 +69,13 @@ test("Systems band communicates five complex operating domains", async () => {
   ]) {
     assert.match(source, new RegExp(escapeRegExp(domain)));
   }
+
+  assert.doesNotMatch(source, /0\{index \+ 1\}/);
+  assert.match(source, /useReducedMotion/);
+  assert.match(source, /shouldReduceMotion/);
+  assert.match(source, /strokeDasharray/);
+  assert.match(source, /rounded-full/);
+  assert.match(source, /blur-3xl/);
 });
 
 test("Selected Work presents exactly six distinct, anonymized case studies", async () => {
@@ -267,7 +274,7 @@ test("Selected Work uses a compact single-open accordion with useful collapsed s
   assert.match(source, /<Accordion\.Content/);
   assert.match(source, /\{project\.label\}/);
   assert.match(source, /\{project\.title\}/);
-  assert.match(source, /\{project\.descriptor\}/);
+  assert.match(source, /\{project\.hook\}/);
   assert.match(source, /project\.scale\.split\(" · "\)/);
   assert.match(source, /\{project\.problem\}/);
   assert.match(source, /\{project\.role\}/);
@@ -276,16 +283,26 @@ test("Selected Work uses a compact single-open accordion with useful collapsed s
   assert.doesNotMatch(source, /defaultValue=/);
 });
 
-test("Selected Work cards use the site's layered black gray and green visual language", async () => {
+test("Selected Work cards use editorial transformation hooks without decorative numbering", async () => {
   const source = await read("src/app/components/SelectedWork.tsx");
 
-  assert.match(source, /String\(index \+ 1\)\.padStart\(2, "0"\)/);
+  assert.doesNotMatch(source, /String\(index \+ 1\)\.padStart\(2, "0"\)/);
   assert.match(source, /h-1\.5 bg-\[#6EDFA3\]/);
-  assert.match(source, /bg-\[#111111\] text-\[#6EDFA3\]/);
   assert.match(source, /shadow-\[0_8px_0_#d9d9d9/);
   assert.match(source, /hover:-translate-y-1/);
   assert.match(source, /rounded-full bg-\[#F1F1F1\]/);
   assert.match(source, /Explore the work/);
+
+  for (const hook of [
+    "A struggling service platform gained a clearer path from dealer evidence to product priorities",
+    "Raw machine telemetry became an operational platform teams could understand and act on",
+    "$7.1M in projected annual savings",
+    "Fragmented clinical knowledge became a governed path toward testable trial intelligence",
+    "A failing app became a unified connected-home experience delivered across iOS and Android",
+    "A 25-year-old claims system became a scalable platform saving about one hour per claim",
+  ]) {
+    assert.match(source, new RegExp(escapeRegExp(hook), "i"));
+  }
 });
 
 test("Selected Work cards omit decorative icons and keep typography subordinate", async () => {
@@ -295,7 +312,6 @@ test("Selected Work cards omit decorative icons and keep typography subordinate"
     assert.doesNotMatch(source, new RegExp(`import \\{[^}]*${icon}`));
   }
   assert.doesNotMatch(source, /ProjectIcon|projectIcons/);
-  assert.match(source, /text-\[56px\] sm:text-\[68px\]/);
   assert.match(source, /text-\[10px\] sm:text-\[11px\][^\"]*font-semibold/);
   assert.match(source, /text-\[19px\] sm:text-xl/);
   assert.match(source, /text-\[10px\] sm:text-\[11px\][^\"]*font-medium/);
