@@ -1,10 +1,11 @@
 import { Hero } from "./Hero";
-import { Philosophy } from "./Philosophy";
+import { WhatIDo } from "./WhatIDo";
 import { ImpactHighlights } from "./ImpactHighlights";
+import { AIAndEmergingTechnology } from "./AIAndEmergingTechnology";
 import { SelectedWork } from "./SelectedWork";
+import { SystemsWorkedIn } from "./SystemsWorkedIn";
 import { SystemsApproach } from "./SystemsApproach";
 import { Experience } from "./Experience";
-import { LeadingDesign } from "./LeadingDesign";
 import { CommunityLeadership } from "./CommunityLeadership";
 import { CaseStudyAccess } from "./CaseStudyAccess";
 import { Footer } from "./Footer";
@@ -13,12 +14,13 @@ export function Home() {
   return (
     <div className="min-h-screen bg-[#F7F7F7]">
       <Hero />
-      <Philosophy />
+      <WhatIDo />
       <ImpactHighlights />
+      <AIAndEmergingTechnology />
       <SelectedWork />
+      <SystemsWorkedIn />
       <SystemsApproach />
       <Experience />
-      <LeadingDesign />
       <div id="about">
         <CommunityLeadership />
       </div>

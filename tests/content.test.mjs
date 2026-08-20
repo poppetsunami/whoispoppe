@@ -3,6 +3,71 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
+const readOptional = async (path) => {
+  try {
+    return await read(path);
+  } catch (error) {
+    if (error?.code === "ENOENT") return "";
+    throw error;
+  }
+};
+
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+test("Homepage leads with product strategy and research leadership", async () => {
+  const [hero, whatIDo, home] = await Promise.all([
+    read("src/app/components/Hero.tsx"),
+    readOptional("src/app/components/WhatIDo.tsx"),
+    read("src/app/components/Home.tsx"),
+  ]);
+
+  assert.match(hero, /Product & Experience Strategist/);
+  assert.match(hero, /Research Leader/);
+  assert.match(hero, /turn research into product strategy, better workflows, and useful technology/i);
+
+  for (const pillar of ["Product Strategy", "Research Leadership & Enablement", "Experience & Service Design"]) {
+    assert.match(whatIDo, new RegExp(escapeRegExp(pillar)));
+  }
+
+  assert.match(home, /<WhatIDo \/>/);
+  assert.doesNotMatch(home, /<LeadingDesign \/>/);
+});
+
+test("AI and emerging technology section shows specific, accountable practice", async () => {
+  const source = await readOptional("src/app/components/AIAndEmergingTechnology.tsx");
+
+  for (const evidence of [
+    "Research Intelligence & AI Enablement",
+    "Human + AI Experience Strategy",
+    "AI Product Experimentation",
+    "Building with AI",
+    "Claude",
+    "Codex",
+    "MCP/connectors",
+    "agentic workflows",
+    "conversation intelligence",
+    "sentiment analysis",
+    "provenance",
+    "bias evaluation",
+    "human review",
+  ]) {
+    assert.match(source, new RegExp(escapeRegExp(evidence), "i"));
+  }
+});
+
+test("Systems band communicates five complex operating domains", async () => {
+  const source = await readOptional("src/app/components/SystemsWorkedIn.tsx");
+
+  for (const domain of [
+    "Healthcare & Clinical Operations",
+    "Agriculture & Machinery Service",
+    "Warehouse & Supply Chain",
+    "Enterprise & Connected Platforms",
+    "AI & Knowledge Systems",
+  ]) {
+    assert.match(source, new RegExp(escapeRegExp(domain)));
+  }
+});
 
 test("Selected Work presents exactly six distinct, anonymized case studies", async () => {
   const source = await read("src/app/components/SelectedWork.tsx");
@@ -34,41 +99,75 @@ test("Selected Work presents exactly six distinct, anonymized case studies", asy
     assert.match(source, new RegExp(evidence, "i"));
   }
 
-  for (const protectedName of ["John Deere", "Culligan", "Smartconnect", "MOUX"]) {
+  for (const descriptor of [
+    "Product discovery, service strategy, and workflow transformation for agricultural equipment service",
+    "Modernizing an enterprise warehouse claims system through operational research and service design",
+  ]) {
+    assert.match(source, new RegExp(escapeRegExp(descriptor), "i"));
+  }
+
+  for (const evidence of ["legacy-system constraints", "business rules", "product requirements"]) {
+    assert.match(source, new RegExp(escapeRegExp(evidence), "i"));
+  }
+
+  for (const protectedName of ["Lilly", "John Deere", "Culligan", "Smartconnect", "MOUX"]) {
     assert.doesNotMatch(source, new RegExp(protectedName, "i"));
   }
 });
 
-test("How I Work includes accountable AI-native practice", async () => {
+test("How I Work stays focused after AI evidence moves to its own section", async () => {
   const source = await read("src/app/components/SystemsApproach.tsx");
 
-  for (const practice of [
-    "research synthesis",
-    "specification drafting",
-    "prototype exploration",
-    "implementation review",
-    "human judgment",
-    "traceability",
-    "decision accountability",
-  ]) {
+  for (const practice of ["Discover", "Frame", "Strategize", "Make", "Align"]) {
     assert.match(source, new RegExp(practice, "i"));
   }
+  assert.doesNotMatch(source, /AI-native product practice/i);
 });
 
-test("About Me communicates AI experimentation and playful leadership", async () => {
+test("About Me communicates curiosity, coaching, and playful leadership without repeating AI details", async () => {
   const source = await read("src/app/components/CommunityLeadership.tsx");
 
   for (const phrase of [
     "About Me",
-    "AI and automation tools",
-    "bespoke AI tools and agents",
-    "always experimenting with new tools and technologies",
+    "curiosity",
+    "coaching",
     "I take the work seriously, but not myself",
     "Outcomes matter, but so does the journey",
     "Community & Leadership",
   ]) {
     assert.match(source, new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
   }
+  assert.doesNotMatch(source, /bespoke AI tools and agents/i);
+});
+
+test("Metadata reflects the strategic and research leadership positioning", async () => {
+  const source = await read("index.html");
+
+  assert.match(source, /<title>Poppe — Product &amp; Experience Strategist · Research Leader<\/title>/);
+  assert.match(source, /turn research into product strategy, better workflows, and useful technology/i);
+  assert.match(source, /og:title" content="Poppe — Product &amp; Experience Strategist · Research Leader"/);
+  assert.match(source, /twitter:title" content="Poppe — Product &amp; Experience Strategist · Research Leader"/);
+  assert.match(source, /social-preview\.png\?v=3/);
+});
+
+test("Rendered homepage sources do not expose protected client or product names", async () => {
+  const paths = [
+    "index.html",
+    "src/app/components/Hero.tsx",
+    "src/app/components/WhatIDo.tsx",
+    "src/app/components/AIAndEmergingTechnology.tsx",
+    "src/app/components/SelectedWork.tsx",
+    "src/app/components/SystemsWorkedIn.tsx",
+    "src/app/components/SystemsApproach.tsx",
+    "src/app/components/Experience.tsx",
+    "src/app/components/CommunityLeadership.tsx",
+  ];
+  const source = (await Promise.all(paths.map(readOptional))).join("\n");
+
+  for (const protectedName of ["Lilly", "John Deere", "Culligan", "SmartConnect", "MOUX"]) {
+    assert.doesNotMatch(source, new RegExp(escapeRegExp(protectedName), "i"));
+  }
+  assert.doesNotMatch(source, /wixstatic|wixsite/i);
 });
 
 test("KAMP engagement dates remain March 2025 through March 2026", async () => {

@@ -48,7 +48,7 @@ export function CommunityLeadership() {
         transition={{ duration: 0.6, delay: 0.1 }}
       >
         <p className="text-[#666666]" style={{ fontSize: '17px', fontWeight: 400, lineHeight: 1.75 }}>
-          At Moral, I work directly on AI and automation tools, translating complex workflows, governance needs, and technical constraints into product requirements and human-in-the-loop experiences. I direct AI tools to accelerate synthesis, specification drafting, prototype exploration, and critique—and independently build bespoke AI tools and agents to explore AI-native product development firsthand. I’m always experimenting with new tools and technologies to understand what they make possible, where they fall short, and how they can create meaningful value. Human review, traceability, and decision accountability remain central to how I work.
+          Curiosity is the through-line in my work: learning unfamiliar systems, asking better questions, and helping teams build confidence in complex spaces. I care about coaching, healthy research and product practices, and creating the conditions for people to do thoughtful work together.
         </p>
         <p className="text-[#111111]" style={{ fontSize: '17px', fontWeight: 500, lineHeight: 1.75 }}>
           I take the work seriously, but not myself. Hard problems can be challenging and still be fun—especially when a team has room to experiment, ask better questions, and enjoy the process. Outcomes matter, but so does the journey: what we learn, how we grow, and the relationships we build along the way.
