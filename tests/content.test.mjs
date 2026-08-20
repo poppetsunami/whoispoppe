@@ -172,7 +172,7 @@ test("Rendered homepage sources do not expose protected client or product names"
   assert.doesNotMatch(source, /wixstatic|wixsite/i);
 });
 
-test("Research intelligence case study is routed and linked from the AI section", async () => {
+test("Research intelligence draft remains routed but is not promoted from the homepage", async () => {
   const [routes, aiSection] = await Promise.all([
     read("src/app/routes.tsx"),
     read("src/app/components/AIAndEmergingTechnology.tsx"),
@@ -180,8 +180,8 @@ test("Research intelligence case study is routed and linked from the AI section"
 
   assert.match(routes, /path: "\/research-intelligence"/);
   assert.match(routes, /<ResearchIntelligence \/>/);
-  assert.match(aiSection, /href="\/research-intelligence"/);
-  assert.match(aiSection, /Explore the research intelligence case study/i);
+  assert.doesNotMatch(aiSection, /href="\/research-intelligence"/);
+  assert.doesNotMatch(aiSection, /Explore the research intelligence case study/i);
 });
 
 test("Research intelligence case study tells an evidence-led, measurable product story", async () => {
