@@ -259,12 +259,24 @@ test("Selected Work uses a compact single-open accordion with useful collapsed s
   assert.match(source, /\{project\.label\}/);
   assert.match(source, /\{project\.title\}/);
   assert.match(source, /\{project\.descriptor\}/);
-  assert.match(source, /\{project\.scale\}/);
+  assert.match(source, /project\.scale\.split\(" · "\)/);
   assert.match(source, /\{project\.problem\}/);
   assert.match(source, /\{project\.role\}/);
   assert.match(source, /\{project\.outcome\}/);
   assert.doesNotMatch(source, /grid md:grid-cols-2/);
   assert.doesNotMatch(source, /defaultValue=/);
+});
+
+test("Selected Work cards use the site's layered black gray and green visual language", async () => {
+  const source = await read("src/app/components/SelectedWork.tsx");
+
+  assert.match(source, /String\(index \+ 1\)\.padStart\(2, "0"\)/);
+  assert.match(source, /h-1\.5 bg-\[#6EDFA3\]/);
+  assert.match(source, /bg-\[#111111\] text-\[#6EDFA3\]/);
+  assert.match(source, /shadow-\[0_8px_0_#d9d9d9/);
+  assert.match(source, /hover:-translate-y-1/);
+  assert.match(source, /rounded-full bg-\[#F1F1F1\]/);
+  assert.match(source, /Explore the work/);
 });
 
 test("Homepage content sections use a tighter consistent vertical rhythm", async () => {
