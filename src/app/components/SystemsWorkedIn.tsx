@@ -15,12 +15,12 @@ export function SystemsWorkedIn() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section ref={ref} aria-labelledby="systems-title" className="max-w-7xl mx-auto px-6 py-10 md:py-20">
+    <section id="systems" ref={ref} aria-labelledby="systems-title" className="max-w-7xl mx-auto scroll-mt-24 px-6 py-10 md:py-20">
       <motion.div className="mb-10 max-w-3xl" initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
         <SectionHeading id="systems-title" className="mb-3" label="Systems I’ve Worked In" accent="Worked In" />
         <p className="text-[#666666]" style={{ fontSize: "17px", lineHeight: 1.65 }}>Different domains, similar challenge: understand a complicated ecosystem quickly and make it more useful, coherent, and humane.</p>
       </motion.div>
-      <div className="relative isolate overflow-hidden rounded-[28px] bg-[#111111] px-5 py-8 text-white shadow-[0_10px_0_#d9d9d9] md:px-10 md:py-12">
+      <div className="relative isolate overflow-hidden rounded-2xl bg-[#111111] px-4 py-6 text-white shadow-[0_10px_0_#d9d9d9] md:rounded-[28px] md:px-10 md:py-12">
         <motion.div
           className="pointer-events-none absolute -left-16 -top-20 h-56 w-56 rounded-full bg-[#6EDFA3]/20 blur-3xl"
           animate={shouldReduceMotion ? {} : { x: [0, 42, 0], y: [0, 24, 0], scale: [1, 1.08, 1] }}
@@ -38,11 +38,32 @@ export function SystemsWorkedIn() {
           <path d="M600 176 C480 80 300 70 130 96 M600 176 C510 140 400 145 330 176 M600 176 C690 140 800 145 870 176 M600 176 C720 80 900 70 1070 96 M600 176 C600 230 600 260 600 320" fill="none" stroke="#6EDFA3" strokeWidth="1.5" strokeDasharray="6 10" />
         </svg>
 
-        <div className="relative z-10 mx-auto mb-7 w-fit rounded-full border border-[#6EDFA3]/50 bg-[#6EDFA3]/10 px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.12em] text-[#6EDFA3]">
+        <div className="relative z-10 mx-auto mb-5 w-fit rounded-full border border-[#6EDFA3]/50 bg-[#6EDFA3]/10 px-4 py-2 text-center text-[10px] font-bold uppercase tracking-[0.1em] text-[#6EDFA3] md:mb-7 md:px-5 md:text-xs md:tracking-[0.12em]">
           Complex operating ecosystems
         </div>
 
-        <div className="relative z-10 flex flex-wrap justify-center gap-3 md:gap-4">
+        <div className="relative z-10 md:hidden">
+          <div className="absolute left-[7px] top-3 bottom-3 w-px bg-[#6EDFA3]/40" aria-hidden="true" />
+          <div>
+            {domains.map((domain, index) => (
+              <motion.article
+                key={domain.title}
+                className="relative flex gap-4 border-b border-white/10 py-4 first:pt-2 last:border-b-0 last:pb-1"
+                initial={{ opacity: 0, x: -12 }}
+                animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.4, delay: index * 0.06 }}
+              >
+                <span className="relative z-10 mt-1 h-[15px] w-[15px] shrink-0 rounded-full border-4 border-[#111111] bg-[#6EDFA3] ring-1 ring-[#6EDFA3]/50" aria-hidden="true" />
+                <div>
+                  <h3 className="mb-1 text-white" style={{ fontSize: "16px", fontWeight: 700, lineHeight: 1.3 }}>{domain.title}</h3>
+                  <p className="text-gray-300" style={{ fontSize: "12px", lineHeight: 1.5 }}>{domain.evidence}</p>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative z-10 hidden flex-wrap justify-center gap-4 md:flex">
           {domains.map((domain, index) => (
             <motion.article
               key={domain.title}
