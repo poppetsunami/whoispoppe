@@ -1,13 +1,14 @@
 import { motion, useReducedMotion } from "motion/react";
+import { HeartPulse, Network, PackageCheck, Sparkles, Sprout } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { SectionHeading } from "./SectionHeading";
 
 const domains = [
-  { title: "Healthcare & Clinical Operations", evidence: "Regulated workflows, governed knowledge, and trial operations." },
-  { title: "Agriculture & Machinery Service", evidence: "Dealer discovery, diagnostics, fleet monitoring, and service transformation." },
-  { title: "Warehouse & Supply Chain", evidence: "Fulfillment, claims, physical-digital workflows, and legacy modernization." },
-  { title: "Enterprise & Connected Platforms", evidence: "Multi-organization systems, telemetry, analytics, and scalable foundations." },
-  { title: "AI & Knowledge Systems", evidence: "Research intelligence, governed inquiry, experimentation, and human review." },
+  { title: "Healthcare & Clinical Operations", evidence: "Regulated workflows, governed knowledge, and trial operations.", icon: HeartPulse },
+  { title: "Agriculture & Machinery Service", evidence: "Dealer discovery, diagnostics, fleet monitoring, and service transformation.", icon: Sprout },
+  { title: "Warehouse & Supply Chain", evidence: "Fulfillment, claims, physical-digital workflows, and legacy modernization.", icon: PackageCheck },
+  { title: "Enterprise & Connected Platforms", evidence: "Multi-organization systems, telemetry, analytics, and scalable foundations.", icon: Network },
+  { title: "AI & Knowledge Systems", evidence: "Research intelligence, governed inquiry, experimentation, and human review.", icon: Sparkles },
 ];
 
 export function SystemsWorkedIn() {
@@ -64,19 +65,24 @@ export function SystemsWorkedIn() {
         </div>
 
         <div className="relative z-10 hidden flex-wrap justify-center gap-4 md:flex">
-          {domains.map((domain, index) => (
-            <motion.article
-              key={domain.title}
-              className="w-full rounded-full border border-white/15 bg-white/[0.07] px-5 py-4 backdrop-blur-sm sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)]"
-              initial={{ opacity: 0, y: 16 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              whileHover={shouldReduceMotion ? {} : { y: -3, borderColor: "rgba(110, 223, 163, 0.55)" }}
-              transition={{ duration: 0.45, delay: index * 0.07 }}
-            >
-              <h3 className="mb-1 text-white" style={{ fontSize: "16px", fontWeight: 700, lineHeight: 1.35 }}>{domain.title}</h3>
-              <p className="text-gray-300" style={{ fontSize: "12px", lineHeight: 1.55 }}>{domain.evidence}</p>
-            </motion.article>
-          ))}
+          {domains.map((domain, index) => {
+            const Icon = domain.icon;
+
+            return (
+              <motion.article
+                key={domain.title}
+                className="w-full rounded-full border border-white/15 bg-white/[0.07] px-5 py-4 backdrop-blur-sm sm:w-[calc(50%-0.5rem)] md:flex md:flex-col md:items-center md:text-center lg:w-[calc(33.333%-0.75rem)]"
+                initial={{ opacity: 0, y: 16 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                whileHover={shouldReduceMotion ? {} : { y: -3, borderColor: "rgba(110, 223, 163, 0.55)" }}
+                transition={{ duration: 0.45, delay: index * 0.07 }}
+              >
+                <Icon className="mb-2 h-[18px] w-[18px] text-[#6EDFA3]/55" strokeWidth={1.5} aria-hidden="true" />
+                <h3 className="mb-1 text-white" style={{ fontSize: "16px", fontWeight: 700, lineHeight: 1.35 }}>{domain.title}</h3>
+                <p className="max-w-[30rem] text-gray-300" style={{ fontSize: "12px", lineHeight: 1.55 }}>{domain.evidence}</p>
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>

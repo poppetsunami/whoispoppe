@@ -83,6 +83,13 @@ test("Systems band communicates five complex operating domains", async () => {
   assert.match(source, /absolute left-\[7px\][^\"]*w-px[^\"]*bg-\[#6EDFA3\]/);
   assert.match(source, /h-\[15px\] w-\[15px\][^\"]*rounded-full[^\"]*bg-\[#6EDFA3\]/);
   assert.match(source, /border-b border-white\/10/);
+  assert.match(source, /HeartPulse/);
+  assert.match(source, /Sprout/);
+  assert.match(source, /PackageCheck/);
+  assert.match(source, /Network/);
+  assert.match(source, /Sparkles/);
+  assert.match(source, /md:items-center[^"]*md:text-center/);
+  assert.match(source, /domain\.icon/);
 });
 
 test("Selected Work presents exactly six distinct, anonymized case studies", async () => {
