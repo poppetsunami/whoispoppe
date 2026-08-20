@@ -65,7 +65,16 @@ export function Hero() {
                     transition={{ delay: 0.9, duration: 0.6 }}
                   />
                 </span>{" "}
-                Strategist <span className="text-[#666666]">· Research Leader</span>
+                Strategist <span className="text-[#666666]">·</span>{" "}
+                <span className="relative inline-block">
+                  <span className="relative z-10">Research Leader</span>
+                  <motion.span
+                    className="absolute bottom-1 left-0 h-3 bg-[#6EDFA3] -z-10"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ delay: 1.1, duration: 0.6 }}
+                  />
+                </span>
               </motion.h1>
 
               {/* Supporting Statement */}

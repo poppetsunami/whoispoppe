@@ -1,6 +1,7 @@
 import { Award, Users, Leaf } from "lucide-react";
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { SectionHeading } from "./SectionHeading";
 
 interface LeadershipItem {
   icon: React.ReactNode;
@@ -31,15 +32,14 @@ export function CommunityLeadership() {
 
   return (
     <section ref={ref} className="max-w-5xl mx-auto px-6 py-16 md:py-24">
-      <motion.h2
+      <motion.div
         className="mb-6"
-        style={{ fontSize: '32px', fontWeight: 600, color: '#111111' }}
         initial={{ opacity: 0, y: 20 }}
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
-        About Me
-      </motion.h2>
+        <SectionHeading label="About Me" accent="Me" />
+      </motion.div>
 
       <motion.div
         className="max-w-4xl space-y-5 mb-14"

@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { Mail, ArrowRight } from "lucide-react";
+import { SectionHeading } from "./SectionHeading";
 
 interface ProjectCard {
   label: string;
@@ -211,12 +212,7 @@ export function SelectedWork() {
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
-        <h2
-          className="mb-3"
-          style={{ fontSize: "32px", fontWeight: 600, color: "#111111" }}
-        >
-          Selected Work
-        </h2>
+        <SectionHeading className="mb-3" label="Selected Work" accent="Work" />
         <p className="text-[#666666] max-w-2xl" style={{ fontSize: "17px", lineHeight: 1.6 }}>
           Enterprise-scale problems in retail operations, legacy modernization, regulated pharmaceutical environments, and connected products. Each project required understanding complex systems, not just designing interfaces.
         </p>

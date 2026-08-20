@@ -2,6 +2,7 @@ import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDown, ExternalLink, Briefcase, Calendar } from "lucide-react";
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { SectionHeading } from "./SectionHeading";
 
 interface ExperienceItem {
   role: string;
@@ -127,19 +128,14 @@ export function Experience() {
 
   return (
     <section id="experience" ref={ref} className="max-w-5xl mx-auto px-6 py-16 md:py-24">
-      <motion.h2 
+      <motion.div
         className="mb-12" 
-        style={{ 
-          fontSize: '32px', 
-          fontWeight: 600, 
-          color: '#111111' 
-        }}
         initial={{ opacity: 0, y: 20 }}
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
-        Experience
-      </motion.h2>
+        <SectionHeading label="Experience" accent="Experience" />
+      </motion.div>
       
       <Accordion.Root type="single" collapsible className="space-y-6">
         {experiences.map((exp, index) => {

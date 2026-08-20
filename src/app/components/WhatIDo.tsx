@@ -1,6 +1,7 @@
 import { Compass, SearchCheck, Workflow } from "lucide-react";
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { SectionHeading } from "./SectionHeading";
 
 const pillars = [
   {
@@ -30,9 +31,7 @@ export function WhatIDo() {
     <section ref={ref} aria-labelledby="what-i-do-title" className="max-w-7xl mx-auto px-6 py-16 md:py-24">
       <motion.div className="mb-12 max-w-3xl" initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
         <p className="text-[#6EDFA3] font-bold uppercase tracking-[0.12em] text-xs mb-3">What I Do</p>
-        <h2 id="what-i-do-title" className="text-[#111111] mb-4" style={{ fontSize: "32px", fontWeight: 600 }}>
-          From evidence to direction—and direction to something real.
-        </h2>
+        <SectionHeading id="what-i-do-title" className="mb-4" label="From evidence to direction—and direction to something real." accent="direction" />
         <p className="text-[#666666]" style={{ fontSize: "18px", lineHeight: 1.7 }}>
           I connect product strategy, research leadership, and experience design to help teams make better decisions inside complicated operating environments.
         </p>

@@ -1,6 +1,7 @@
 import { Mail } from "lucide-react";
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { SectionHeading } from "./SectionHeading";
 
 export function CaseStudyAccess() {
   const { ref, isVisible } = useScrollAnimation(0.3);
@@ -34,19 +35,14 @@ export function CaseStudyAccess() {
         <div className="absolute bottom-10 right-10 w-32 h-32 rounded-full border-2 border-[#6EDFA3] opacity-10" />
 
         <div className="max-w-2xl mx-auto relative z-10">
-          <motion.h2 
+          <motion.div
             className="mb-6" 
-            style={{ 
-              fontSize: '32px', 
-              fontWeight: 600, 
-              color: '#111111' 
-            }}
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 }}
           >
-            Case Study Access
-          </motion.h2>
+            <SectionHeading label="Case Study Access" accent="Access" />
+          </motion.div>
           <motion.p 
             className="text-[#666666] mb-8" 
             style={{ 

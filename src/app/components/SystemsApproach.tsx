@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { Search, Layers, TrendingUp, Wrench, Users2 } from "lucide-react";
+import { SectionHeading } from "./SectionHeading";
 
 interface Capability {
   icon: React.ReactNode;
@@ -53,9 +54,7 @@ export function SystemsApproach() {
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="mb-4" style={{ fontSize: "32px", fontWeight: 600, color: "#111111" }}>
-          How I Work
-        </h2>
+        <SectionHeading className="mb-4" label="How I Work" accent="Work" />
         <p className="text-[#666666]" style={{ fontSize: "18px", fontWeight: 400, lineHeight: 1.7 }}>
           Five integrated capabilities, not five separate services. In practice they overlap, loop back, and inform each other — because real product work does not follow a clean linear path.
         </p>
