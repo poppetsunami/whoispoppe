@@ -170,6 +170,69 @@ test("Rendered homepage sources do not expose protected client or product names"
   assert.doesNotMatch(source, /wixstatic|wixsite/i);
 });
 
+test("Research intelligence case study is routed and linked from the AI section", async () => {
+  const [routes, aiSection] = await Promise.all([
+    read("src/app/routes.tsx"),
+    read("src/app/components/AIAndEmergingTechnology.tsx"),
+  ]);
+
+  assert.match(routes, /path: "\/research-intelligence"/);
+  assert.match(routes, /<ResearchIntelligence \/>/);
+  assert.match(aiSection, /href="\/research-intelligence"/);
+  assert.match(aiSection, /Explore the research intelligence case study/i);
+});
+
+test("Research intelligence case study tells an evidence-led, measurable product story", async () => {
+  const source = await readOptional("src/app/pages/ResearchIntelligence.tsx");
+
+  for (const evidence of [
+    "From Research Practice to Intelligence System",
+    "Designing trustworthy project memory for evidence, decisions, and responsible AI",
+    "My Role",
+    "What We Discovered",
+    "Prepare with context",
+    "Assist during the work",
+    "Analyze with evidence",
+    "Review with an expert",
+    "Act and remember",
+    "Strategic Product Decisions",
+    "The First Testable Loop",
+    "What the MVP Would Not Do",
+    "Continue",
+    "Pivot",
+    "Buy or configure",
+    "Pause",
+    "Stop",
+    "validation criteria rather than realized results",
+    "Judgment architecture",
+    "refusal strategy",
+    "document.title = \"From Research Practice to Intelligence System | Who Is Poppe\"",
+  ]) {
+    assert.match(source, new RegExp(escapeRegExp(evidence), "i"));
+  }
+
+  for (const protectedName of ["MOUX", "Moral", "Lilly", "Culligan", "John Deere", "SmartConnect"]) {
+    assert.doesNotMatch(source, new RegExp(escapeRegExp(protectedName), "i"));
+  }
+});
+
+test("Build creates route-specific static metadata for the research intelligence case study", async () => {
+  const [packageSource, routeBuilder] = await Promise.all([
+    read("package.json"),
+    readOptional("scripts/create-route-pages.mjs"),
+  ]);
+
+  assert.match(packageSource, /vite build && node scripts\/create-route-pages\.mjs/);
+  for (const metadata of [
+    "research-intelligence/index.html",
+    "From Research Practice to Intelligence System | Who Is Poppe",
+    "How Poppe turned fragmented research evidence into a focused, governed AI product strategy for trustworthy project memory.",
+    "https://whoispoppe.com/research-intelligence/",
+  ]) {
+    assert.match(routeBuilder, new RegExp(escapeRegExp(metadata)));
+  }
+});
+
 test("KAMP engagement dates remain March 2025 through March 2026", async () => {
   const source = await read("src/app/components/Experience.tsx");
   assert.match(source, /company: "KAMP Technologies"[\s\S]*?dates: "Mar 2025 – Mar 2026"/);
