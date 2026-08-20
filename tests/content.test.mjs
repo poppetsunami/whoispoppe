@@ -279,6 +279,18 @@ test("Selected Work cards use the site's layered black gray and green visual lan
   assert.match(source, /Explore the work/);
 });
 
+test("Selected Work card icons and typography stay subordinate to the site's content hierarchy", async () => {
+  const source = await read("src/app/components/SelectedWork.tsx");
+
+  assert.match(source, /h-8 w-8[^\"]*bg-\[#111111\]/);
+  assert.match(source, /ProjectIcon className="h-4 w-4"/);
+  assert.doesNotMatch(source, /shadow-\[3px_3px_0_#6EDFA3\]/);
+  assert.match(source, /text-\[56px\] sm:text-\[68px\]/);
+  assert.match(source, /text-\[10px\] sm:text-\[11px\][^\"]*font-semibold/);
+  assert.match(source, /text-\[19px\] sm:text-xl/);
+  assert.match(source, /text-\[10px\] sm:text-\[11px\][^\"]*font-medium/);
+});
+
 test("Homepage content sections use a tighter consistent vertical rhythm", async () => {
   const paths = [
     "src/app/components/WhatIDo.tsx",

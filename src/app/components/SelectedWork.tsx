@@ -100,25 +100,25 @@ function ProjectCard({ project, index, isVisible }: { project: ProjectCard; inde
       <Accordion.Item value={`project-${index}`}>
         <Accordion.Header>
           <Accordion.Trigger className="group relative w-full px-5 py-5 sm:px-7 sm:py-6 text-left overflow-hidden">
-            <span className="absolute right-3 sm:right-4 top-1 text-[68px] sm:text-[82px] font-black leading-none tracking-[-0.08em] text-[#F0F0F0] transition-colors duration-300 group-data-[state=open]:text-[#E8F8EF]" aria-hidden="true">
+            <span className="absolute right-3 sm:right-4 top-2 text-[56px] sm:text-[68px] font-black leading-none tracking-[-0.06em] text-[#F0F0F0] transition-colors duration-300 group-data-[state=open]:text-[#E8F8EF]" aria-hidden="true">
               {String(index + 1).padStart(2, "0")}
             </span>
 
             <div className="relative z-10 flex items-start gap-4">
               <div className="min-w-0 flex-1">
-                <div className="mb-4 flex items-center gap-3 pr-12">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#111111] text-[#6EDFA3] shadow-[3px_3px_0_#6EDFA3]">
-                    <ProjectIcon className="h-5 w-5" aria-hidden="true" />
+                <div className="mb-4 flex items-center gap-2.5 pr-12">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#111111] text-[#6EDFA3]">
+                    <ProjectIcon className="h-4 w-4" aria-hidden="true" />
                   </span>
-                  <p className="text-[#319B65] text-[11px] sm:text-xs font-bold uppercase tracking-[0.08em] leading-snug">{project.label}</p>
+                  <p className="text-[#319B65] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.08em] leading-snug">{project.label}</p>
                 </div>
 
-                <h3 className="text-[#111111] mb-2 text-xl sm:text-[22px] font-bold leading-tight">{project.title}</h3>
-                <p className="text-[#666666] mb-3 text-[15px] font-medium leading-relaxed">{project.descriptor}</p>
+                <h3 className="text-[#111111] mb-2 text-[19px] sm:text-xl font-bold leading-tight">{project.title}</h3>
+                <p className="text-[#666666] mb-3 text-sm font-normal leading-relaxed">{project.descriptor}</p>
 
                 <div className="flex flex-wrap gap-2" aria-label="Project scale">
                   {project.scale.split(" · ").map((item) => (
-                    <span key={item} className="rounded-full bg-[#F1F1F1] px-3 py-1.5 text-[11px] sm:text-xs font-semibold leading-tight text-[#444444]">
+                    <span key={item} className="rounded-full bg-[#F1F1F1] px-2.5 py-1 text-[10px] sm:text-[11px] font-medium leading-tight text-[#555555]">
                       {item}
                     </span>
                   ))}
