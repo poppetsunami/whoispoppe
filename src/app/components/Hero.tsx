@@ -28,7 +28,7 @@ export function Hero() {
         >
           <div className="flex items-start gap-3">
             <motion.img
-              src="https://static.wixstatic.com/media/97cbb1_e398a07703674fabb48e695dd413a3fc~mv2.png/v1/fill/w_100,h_98,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/poppy.png"
+              src="/favicon.png"
               alt="Poppy icon"
               className="w-10 h-10 mt-1 flex-shrink-0"
               animate={{ rotate: [0, 10, 0, -10, 0] }}
@@ -49,12 +49,13 @@ export function Hero() {
               {/* Primary Positioning */}
               <motion.h1
                 className="mb-5"
+                aria-label="Product & Experience Strategist · Research Leader"
                 style={{ fontSize: "46px", fontWeight: 700, lineHeight: 1.15, color: "#111111" }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                Digital Product &{" "}
+                Product &{" "}
                 <span className="relative inline-block">
                   <span className="relative z-10">Experience</span>
                   <motion.span
@@ -64,7 +65,7 @@ export function Hero() {
                     transition={{ delay: 0.9, duration: 0.6 }}
                   />
                 </span>{" "}
-                Strategist
+                Strategist <span className="text-[#666666]">· Research Leader</span>
               </motion.h1>
 
               {/* Supporting Statement */}
@@ -75,7 +76,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                I turn complex human, operational, and business problems into digital products, services, and strategies that work in the real world.
+                I work inside complex systems to understand what’s really happening, define the right problems, and turn research into product strategy, better workflows, and useful technology.
               </motion.p>
 
               {/* Experience Line */}
@@ -86,7 +87,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                12+ years across enterprise technology, operational systems, connected products, and regulated pharmaceutical environments.
+                12+ years across enterprise platforms, operational systems, connected products, regulated environments, and emerging technology.
               </motion.p>
 
               {/* CTAs */}
@@ -152,7 +153,7 @@ export function Hero() {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
             <motion.img
-              src="https://static.wixstatic.com/media/97cbb1_64e54ba6d69c480b964de8e85ff2db89~mv2.jpeg/v1/fill/w_1030,h_1456,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/97cbb1_64e54ba6d69c480b964de8e85ff2db89~mv2.jpeg"
+              src="/poppe-portrait.jpg"
               alt="Portrait of Poppe"
               className="rounded-2xl shadow-lg w-full max-w-md relative z-10"
               transition={{ duration: 0.3 }}
