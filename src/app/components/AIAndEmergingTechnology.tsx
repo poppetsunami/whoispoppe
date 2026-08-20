@@ -1,4 +1,4 @@
-import { ArrowRight, Bot, BrainCircuit, Network, ShieldCheck } from "lucide-react";
+import { Bot, BrainCircuit, Network, ShieldCheck } from "lucide-react";
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { SectionHeading } from "./SectionHeading";
@@ -29,17 +29,6 @@ export function AIAndEmergingTechnology() {
             </motion.article>
           ))}
         </div>
-        <motion.a
-          href="/research-intelligence"
-          className="mt-8 inline-flex items-center gap-2 rounded-lg border border-[#6EDFA3] px-5 py-3 text-[#6EDFA3] hover:bg-[#6EDFA3] hover:text-[#111111] transition-colors"
-          style={{ fontSize: "15px", fontWeight: 700 }}
-          initial={{ opacity: 0, y: 16 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          Explore the research intelligence case study
-          <ArrowRight className="h-4 w-4" />
-        </motion.a>
       </div>
     </section>
   );
