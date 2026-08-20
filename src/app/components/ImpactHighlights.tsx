@@ -57,22 +57,22 @@ export function ImpactHighlights() {
         {highlights.map((h, index) => (
           <motion.div
             key={index}
-            className="bg-[#F7F7F7] p-8 relative overflow-hidden"
+            className="bg-[#F7F7F7] p-5 sm:p-8 relative overflow-hidden min-w-0"
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: index * 0.08 }}
           >
-            <div className="mb-3">
+            <div className="mb-3 flex flex-col items-start gap-1 sm:block">
               <span
                 className="text-[#111111]"
-                style={{ fontSize: "42px", fontWeight: 700, lineHeight: 1, letterSpacing: "-0.02em" }}
+                style={{ fontSize: "clamp(34px, 10vw, 42px)", fontWeight: 700, lineHeight: 1, letterSpacing: "-0.02em" }}
               >
                 {h.prefix}
                 {isVisible ? <AnimatedCounter end={h.number} /> : "0"}
                 {h.suffix}
               </span>
               {h.unit && (
-                <span className="text-[#6EDFA3] ml-2" style={{ fontSize: "18px", fontWeight: 600 }}>
+                <span className="text-[#6EDFA3] sm:ml-2 break-words max-w-full" style={{ fontSize: "16px", fontWeight: 600, lineHeight: 1.2 }}>
                   {h.unit}
                 </span>
               )}

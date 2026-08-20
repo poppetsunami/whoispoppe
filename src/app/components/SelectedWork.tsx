@@ -86,7 +86,7 @@ function ProjectCard({ project, index, isVisible }: { project: ProjectCard; inde
   return (
     <motion.div
       className="bg-white rounded-2xl border-2 border-gray-100 overflow-hidden flex flex-col"
-      initial={{ opacity: 0, y: 30 }}
+      initial={false}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.12 }}
     >

@@ -233,6 +233,20 @@ test("Build creates route-specific static metadata for the research intelligence
   }
 });
 
+test("Mobile impact metrics wrap and case-study cards never begin hidden", async () => {
+  const [impact, selectedWork] = await Promise.all([
+    read("src/app/components/ImpactHighlights.tsx"),
+    read("src/app/components/SelectedWork.tsx"),
+  ]);
+
+  assert.match(impact, /p-5 sm:p-8/);
+  assert.match(impact, /flex flex-col items-start gap-1 sm:block/);
+  assert.match(impact, /clamp\(34px, 10vw, 42px\)/);
+  assert.match(impact, /sm:ml-2/);
+  assert.match(selectedWork, /initial=\{false\}/);
+  assert.doesNotMatch(selectedWork, /initial=\{\{ opacity: 0, y: 30 \}\}/);
+});
+
 test("KAMP engagement dates remain March 2025 through March 2026", async () => {
   const source = await read("src/app/components/Experience.tsx");
   assert.match(source, /company: "KAMP Technologies"[\s\S]*?dates: "Mar 2025 – Mar 2026"/);
