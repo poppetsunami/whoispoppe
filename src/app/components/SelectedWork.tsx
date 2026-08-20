@@ -1,7 +1,7 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
-import { Mail, ArrowRight, BrainCircuit, ChevronDown, Droplets, RadioTower, Recycle, Warehouse, Wrench } from "lucide-react";
+import { Mail, ArrowRight, ChevronDown } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 
 interface ProjectCard {
@@ -84,11 +84,7 @@ const projects: ProjectCard[] = [
   },
 ];
 
-const projectIcons = [Wrench, RadioTower, Recycle, BrainCircuit, Droplets, Warehouse];
-
 function ProjectCard({ project, index, isVisible }: { project: ProjectCard; index: number; isVisible: boolean }) {
-  const ProjectIcon = projectIcons[index];
-
   return (
     <motion.div
       className="group/card relative bg-white rounded-2xl border border-[#222222] overflow-hidden shadow-[0_8px_0_#d9d9d9,0_14px_28px_rgba(0,0,0,0.10)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_0_#6EDFA3,0_18px_34px_rgba(0,0,0,0.14)]"
@@ -104,14 +100,9 @@ function ProjectCard({ project, index, isVisible }: { project: ProjectCard; inde
               {String(index + 1).padStart(2, "0")}
             </span>
 
-            <div className="relative z-10 flex items-start gap-4">
+            <div className="relative z-10">
               <div className="min-w-0 flex-1">
-                <div className="mb-4 flex items-center gap-2.5 pr-12">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#111111] text-[#6EDFA3]">
-                    <ProjectIcon className="h-4 w-4" aria-hidden="true" />
-                  </span>
-                  <p className="text-[#319B65] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.08em] leading-snug">{project.label}</p>
-                </div>
+                <p className="text-[#319B65] mb-4 pr-14 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.08em] leading-snug">{project.label}</p>
 
                 <h3 className="text-[#111111] mb-2 text-[19px] sm:text-xl font-bold leading-tight">{project.title}</h3>
                 <p className="text-[#666666] mb-3 text-sm font-normal leading-relaxed">{project.descriptor}</p>
