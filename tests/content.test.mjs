@@ -120,9 +120,18 @@ test("Selected Work presents exactly six distinct, anonymized case studies", asy
 test("How I Work stays focused after AI evidence moves to its own section", async () => {
   const source = await read("src/app/components/SystemsApproach.tsx");
 
-  for (const practice of ["Discover", "Frame", "Strategize", "Make", "Align"]) {
+  for (const practice of ["Discover", "Frame", "Strategize", "Align", "Make", "Deliver & Evolve"]) {
     assert.match(source, new RegExp(practice, "i"));
   }
+  assert.match(source, /Six integrated capabilities, not six separate services/);
+  assert.match(source, /implementation, launch, adoption, and continuous refinement/i);
+  assert.match(source, /real-world feedback and product signals/i);
+  assert.match(source, /lg:grid-cols-3/);
+
+  const positions = ["Discover", "Frame", "Strategize", "Align", "Make", "Deliver & Evolve"].map((title) =>
+    source.indexOf(`title: "${title}"`),
+  );
+  assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
   assert.doesNotMatch(source, /AI-native product practice/i);
 });
 

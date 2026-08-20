@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
-import { Search, Layers, TrendingUp, Wrench, Users2 } from "lucide-react";
+import { Search, Layers, TrendingUp, Wrench, Users2, Rocket } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 
 interface Capability {
@@ -30,16 +30,22 @@ const capabilities: Capability[] = [
     description: "Connect customer value, business outcomes, operational realities, and technical constraints into coherent direction.",
   },
   {
-    icon: <Wrench className="w-6 h-6" />,
+    icon: <Users2 className="w-6 h-6" />,
     verb: "04",
+    title: "Align",
+    description: "Bring product, engineering, research, operations, domain experts, and leadership together around consequential decisions.",
+  },
+  {
+    icon: <Wrench className="w-6 h-6" />,
+    verb: "05",
     title: "Make",
     description: "Prototype products, services, workflows, and experiences so assumptions can be tested rather than merely discussed.",
   },
   {
-    icon: <Users2 className="w-6 h-6" />,
-    verb: "05",
-    title: "Align",
-    description: "Bring product, engineering, research, operations, domain experts, and leadership together around consequential decisions.",
+    icon: <Rocket className="w-6 h-6" />,
+    verb: "06",
+    title: "Deliver & Evolve",
+    description: "Partner through implementation, launch, adoption, and continuous refinement—using real-world feedback and product signals to improve what ships.",
   },
 ];
 
@@ -56,11 +62,11 @@ export function SystemsApproach() {
       >
         <SectionHeading className="mb-4" label="How I Work" accent="Work" />
         <p className="text-[#666666]" style={{ fontSize: "18px", fontWeight: 400, lineHeight: 1.7 }}>
-          Five integrated capabilities, not five separate services. In practice they overlap, loop back, and inform each other — because real product work does not follow a clean linear path.
+          Six integrated capabilities, not six separate services. In practice they overlap, loop back, and inform each other — because real product work does not follow a clean linear path.
         </p>
       </motion.div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {capabilities.map((cap, index) => (
           <motion.div
             key={index}
