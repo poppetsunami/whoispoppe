@@ -1,7 +1,7 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
-import { Mail, ArrowRight, ChevronDown } from "lucide-react";
+import { Mail, ArrowRight, BrainCircuit, ChevronDown, Droplets, RadioTower, Recycle, Warehouse, Wrench } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 
 interface ProjectCard {
@@ -84,26 +84,54 @@ const projects: ProjectCard[] = [
   },
 ];
 
+const projectIcons = [Wrench, RadioTower, Recycle, BrainCircuit, Droplets, Warehouse];
+
 function ProjectCard({ project, index, isVisible }: { project: ProjectCard; index: number; isVisible: boolean }) {
+  const ProjectIcon = projectIcons[index];
+
   return (
     <motion.div
-      className="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden shadow-sm"
+      className="group/card relative bg-white rounded-2xl border border-[#222222] overflow-hidden shadow-[0_8px_0_#d9d9d9,0_14px_28px_rgba(0,0,0,0.10)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_0_#6EDFA3,0_18px_34px_rgba(0,0,0,0.14)]"
       initial={false}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.45, delay: index * 0.06 }}
     >
+      <div className="h-1.5 bg-[#6EDFA3]" aria-hidden="true" />
       <Accordion.Item value={`project-${index}`}>
         <Accordion.Header>
-          <Accordion.Trigger className="group w-full px-5 py-5 sm:px-7 sm:py-6 text-left flex items-start gap-4">
-            <div className="min-w-0 flex-1">
-              <p className="text-[#6EDFA3] mb-2 text-xs font-bold uppercase tracking-[0.08em]">{project.label}</p>
-              <h3 className="text-[#111111] mb-2 text-xl sm:text-[22px] font-bold leading-tight">{project.title}</h3>
-              <p className="text-[#666666] mb-3 text-[15px] font-medium leading-relaxed">{project.descriptor}</p>
-              <p className="text-[#666666] text-sm font-medium leading-relaxed">{project.scale}</p>
-            </div>
-            <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F1F1F1]">
-              <ChevronDown className="h-5 w-5 text-[#666666] transition-transform duration-300 group-data-[state=open]:rotate-180" aria-hidden="true" />
+          <Accordion.Trigger className="group relative w-full px-5 py-5 sm:px-7 sm:py-6 text-left overflow-hidden">
+            <span className="absolute right-3 sm:right-4 top-1 text-[68px] sm:text-[82px] font-black leading-none tracking-[-0.08em] text-[#F0F0F0] transition-colors duration-300 group-data-[state=open]:text-[#E8F8EF]" aria-hidden="true">
+              {String(index + 1).padStart(2, "0")}
             </span>
+
+            <div className="relative z-10 flex items-start gap-4">
+              <div className="min-w-0 flex-1">
+                <div className="mb-4 flex items-center gap-3 pr-12">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#111111] text-[#6EDFA3] shadow-[3px_3px_0_#6EDFA3]">
+                    <ProjectIcon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <p className="text-[#319B65] text-[11px] sm:text-xs font-bold uppercase tracking-[0.08em] leading-snug">{project.label}</p>
+                </div>
+
+                <h3 className="text-[#111111] mb-2 text-xl sm:text-[22px] font-bold leading-tight">{project.title}</h3>
+                <p className="text-[#666666] mb-3 text-[15px] font-medium leading-relaxed">{project.descriptor}</p>
+
+                <div className="flex flex-wrap gap-2" aria-label="Project scale">
+                  {project.scale.split(" · ").map((item) => (
+                    <span key={item} className="rounded-full bg-[#F1F1F1] px-3 py-1.5 text-[11px] sm:text-xs font-semibold leading-tight text-[#444444]">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-5 flex items-center justify-between border-t border-gray-200 pt-4">
+                  <span className="text-xs font-bold text-[#111111]">Explore the work</span>
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#111111] text-[#6EDFA3] transition-colors group-hover:bg-[#222222]">
+                    <ChevronDown className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-180" aria-hidden="true" />
+                  </span>
+                </div>
+              </div>
+            </div>
           </Accordion.Trigger>
         </Accordion.Header>
 
