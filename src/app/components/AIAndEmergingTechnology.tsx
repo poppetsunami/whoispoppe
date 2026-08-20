@@ -13,7 +13,7 @@ const practices = [
 export function AIAndEmergingTechnology() {
   const { ref, isVisible } = useScrollAnimation(0.15);
   return (
-    <section ref={ref} aria-labelledby="ai-title" className="bg-[#111111] text-white py-16 md:py-24">
+    <section ref={ref} aria-labelledby="ai-title" className="bg-[#111111] text-white py-10 md:py-20">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div className="mb-12 max-w-3xl" initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
           <p className="text-[#6EDFA3] font-bold uppercase tracking-[0.12em] text-xs mb-3">AI & Emerging Technology</p>

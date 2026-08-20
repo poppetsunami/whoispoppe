@@ -1,6 +1,7 @@
+import * as Accordion from "@radix-ui/react-accordion";
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
-import { Mail, ArrowRight } from "lucide-react";
+import { Mail, ArrowRight, ChevronDown } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 
 interface ProjectCard {
@@ -86,117 +87,60 @@ const projects: ProjectCard[] = [
 function ProjectCard({ project, index, isVisible }: { project: ProjectCard; index: number; isVisible: boolean }) {
   return (
     <motion.div
-      className="bg-white rounded-2xl border-2 border-gray-100 overflow-hidden flex flex-col"
+      className="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden shadow-sm"
       initial={false}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.12 }}
+      transition={{ duration: 0.45, delay: index * 0.06 }}
     >
-      {/* Top accent bar — always visible */}
-      <div className="h-1 bg-[#6EDFA3]" />
-
-      <div className="p-8 flex flex-col flex-1">
-        {/* Label */}
-        <p
-          className="text-[#6EDFA3] mb-2"
-          style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}
-        >
-          {project.label}
-        </p>
-
-        {/* Title */}
-        <h3
-          className="text-[#111111] mb-2"
-          style={{ fontSize: "22px", fontWeight: 700, lineHeight: 1.3 }}
-        >
-          {project.title}
-        </h3>
-
-        <p className="text-[#666666] mb-5" style={{ fontSize: "15px", fontWeight: 500, lineHeight: 1.55 }}>
-          {project.descriptor}
-        </p>
-
-        {/* Problem */}
-        <div className="mb-4">
-          <p
-            className="text-[#666666] mb-1"
-            style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}
-          >
-            The Problem
-          </p>
-          <p
-            className="text-[#111111]"
-            style={{ fontSize: "15px", fontWeight: 400, lineHeight: 1.6 }}
-          >
-            {project.problem}
-          </p>
-        </div>
-
-        {/* Role */}
-        <div className="mb-4">
-          <p
-            className="text-[#666666] mb-1"
-            style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}
-          >
-            My Role
-          </p>
-          <p
-            className="text-[#111111]"
-            style={{ fontSize: "15px", fontWeight: 400, lineHeight: 1.6 }}
-          >
-            {project.role}
-          </p>
-        </div>
-
-        {/* Scale */}
-        <p
-          className="text-[#666666] mb-5 text-sm"
-          style={{ fontWeight: 500 }}
-        >
-          {project.scale}
-        </p>
-
-        {/* Outcome */}
-        <div className="bg-[#F7F7F7] rounded-xl px-5 py-4 mb-6 border-l-4 border-[#6EDFA3]">
-          <p
-            className="text-[#666666] mb-1"
-            style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}
-          >
-            Outcome
-          </p>
-          <p
-            className="text-[#111111]"
-            style={{ fontSize: "14px", fontWeight: 400, lineHeight: 1.6 }}
-          >
-            {project.outcome}
-          </p>
-        </div>
-
-        {/* Capabilities */}
-        <div className="flex flex-wrap gap-2 mb-6 mt-auto">
-          {project.capabilities.map((cap) => (
-            <span
-              key={cap}
-              className="px-3 py-1 bg-[#111111] text-white rounded-full"
-              style={{ fontSize: "12px", fontWeight: 500 }}
-            >
-              {cap}
+      <Accordion.Item value={`project-${index}`}>
+        <Accordion.Header>
+          <Accordion.Trigger className="group w-full px-5 py-5 sm:px-7 sm:py-6 text-left flex items-start gap-4">
+            <div className="min-w-0 flex-1">
+              <p className="text-[#6EDFA3] mb-2 text-xs font-bold uppercase tracking-[0.08em]">{project.label}</p>
+              <h3 className="text-[#111111] mb-2 text-xl sm:text-[22px] font-bold leading-tight">{project.title}</h3>
+              <p className="text-[#666666] mb-3 text-[15px] font-medium leading-relaxed">{project.descriptor}</p>
+              <p className="text-[#666666] text-sm font-medium leading-relaxed">{project.scale}</p>
+            </div>
+            <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F1F1F1]">
+              <ChevronDown className="h-5 w-5 text-[#666666] transition-transform duration-300 group-data-[state=open]:rotate-180" aria-hidden="true" />
             </span>
-          ))}
-        </div>
+          </Accordion.Trigger>
+        </Accordion.Header>
 
-        {/* CTA */}
-        <a
-          href="mailto:whoispoppe@gmail.com"
-          className="inline-flex items-center gap-2 text-[#111111] group/link"
-          style={{ fontSize: "14px", fontWeight: 600 }}
-        >
-          <Mail className="w-4 h-4 text-[#6EDFA3]" />
-          <span className="border-b border-transparent group-hover/link:border-[#111111] transition-colors">
-            {project.confidential ? "Request case study access" : "View case study"}
-          </span>
-          <ArrowRight className="w-4 h-4 opacity-0 group-hover/link:opacity-100 transition-opacity -translate-x-2 group-hover/link:translate-x-0 transition-transform duration-200" />
-        </a>
-      </div>
+        <Accordion.Content className="overflow-hidden border-t border-gray-200 data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+          <div className="px-5 pb-6 pt-5 sm:px-7 sm:pb-7">
+            <div className="grid gap-5 md:grid-cols-2">
+              <div>
+                <p className="text-[#666666] mb-1 text-[11px] font-semibold uppercase tracking-[0.06em]">The Problem</p>
+                <p className="text-[#111111] text-[15px] leading-relaxed">{project.problem}</p>
+              </div>
+              <div>
+                <p className="text-[#666666] mb-1 text-[11px] font-semibold uppercase tracking-[0.06em]">My Role</p>
+                <p className="text-[#111111] text-[15px] leading-relaxed">{project.role}</p>
+              </div>
+            </div>
+
+            <div className="bg-[#F7F7F7] rounded-xl px-5 py-4 my-5 border-l-4 border-[#6EDFA3]">
+              <p className="text-[#666666] mb-1 text-[11px] font-semibold uppercase tracking-[0.06em]">Outcome</p>
+              <p className="text-[#111111] text-sm leading-relaxed">{project.outcome}</p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mb-5">
+              {project.capabilities.map((cap) => (
+                <span key={cap} className="px-3 py-1 bg-[#111111] text-white rounded-full text-xs font-medium">{cap}</span>
+              ))}
+            </div>
+
+            <a href="mailto:whoispoppe@gmail.com" className="inline-flex items-center gap-2 text-[#111111] group/link text-sm font-semibold">
+              <Mail className="w-4 h-4 text-[#6EDFA3]" />
+              <span className="border-b border-transparent group-hover/link:border-[#111111] transition-colors">
+                {project.confidential ? "Request case study access" : "View case study"}
+              </span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" />
+            </a>
+          </div>
+        </Accordion.Content>
+      </Accordion.Item>
     </motion.div>
   );
 }
@@ -205,10 +149,10 @@ export function SelectedWork() {
   const { ref, isVisible } = useScrollAnimation(0.1);
 
   return (
-    <section id="work" ref={ref} className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+    <section id="work" ref={ref} className="max-w-5xl mx-auto px-6 py-10 md:py-20">
       <motion.div
-        className="mb-12"
-        initial={{ opacity: 0, y: 20 }}
+        className="mb-8 md:mb-10"
+        initial={false}
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
@@ -218,11 +162,11 @@ export function SelectedWork() {
         </p>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <Accordion.Root type="single" collapsible className="space-y-4">
         {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} index={index} isVisible={isVisible} />
+          <ProjectCard key={project.title} project={project} index={index} isVisible={isVisible} />
         ))}
-      </div>
+      </Accordion.Root>
     </section>
   );
 }

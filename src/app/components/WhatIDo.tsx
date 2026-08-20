@@ -28,7 +28,7 @@ export function WhatIDo() {
   const { ref, isVisible } = useScrollAnimation(0.15);
 
   return (
-    <section ref={ref} aria-labelledby="what-i-do-title" className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+    <section ref={ref} aria-labelledby="what-i-do-title" className="max-w-7xl mx-auto px-6 py-10 md:py-20">
       <motion.div className="mb-12 max-w-3xl" initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
         <p className="text-[#6EDFA3] font-bold uppercase tracking-[0.12em] text-xs mb-3">What I Do</p>
         <SectionHeading id="what-i-do-title" className="mb-4" label="From evidence to direction—and direction to something real." accent="direction" />

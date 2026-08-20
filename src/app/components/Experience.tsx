@@ -127,7 +127,7 @@ export function Experience() {
   const { ref, isVisible } = useScrollAnimation(0.2);
 
   return (
-    <section id="experience" ref={ref} className="max-w-5xl mx-auto px-6 py-16 md:py-24">
+    <section id="experience" ref={ref} className="max-w-5xl mx-auto px-6 py-10 md:py-20">
       <motion.div
         className="mb-12" 
         initial={{ opacity: 0, y: 20 }}

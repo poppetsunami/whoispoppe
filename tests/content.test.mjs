@@ -24,8 +24,8 @@ test("Homepage leads with product strategy and research leadership", async () =>
   assert.match(hero, /Product & Experience Strategist/);
   assert.match(hero, /Research Leader/);
   assert.match(hero, /turn research into product strategy, better workflows, and useful technology/i);
-  assert.equal((hero.match(/h-3 bg-\[#6EDFA3\]/g) ?? []).length, 2);
-  assert.doesNotMatch(hero, /text-\[#666666\][^>]*>· Research Leader/);
+  assert.equal((hero.match(/h-3 bg-\[#6EDFA3\]/g) ?? []).length, 1);
+  assert.match(hero, /text-\[#666666\][^>]*>· Research Leader/);
 
   for (const pillar of ["Product Strategy", "Research Leadership & Enablement", "Experience & Service Design"]) {
     assert.match(whatIDo, new RegExp(escapeRegExp(pillar)));
@@ -247,6 +247,44 @@ test("Mobile impact metrics wrap and case-study cards never begin hidden", async
   assert.match(impact, /sm:ml-2/);
   assert.match(selectedWork, /initial=\{false\}/);
   assert.doesNotMatch(selectedWork, /initial=\{\{ opacity: 0, y: 30 \}\}/);
+});
+
+test("Selected Work uses a compact single-open accordion with useful collapsed summaries", async () => {
+  const source = await read("src/app/components/SelectedWork.tsx");
+
+  assert.match(source, /import \* as Accordion from "@radix-ui\/react-accordion"/);
+  assert.match(source, /<Accordion\.Root type="single" collapsible/);
+  assert.match(source, /<Accordion\.Trigger/);
+  assert.match(source, /<Accordion\.Content/);
+  assert.match(source, /\{project\.label\}/);
+  assert.match(source, /\{project\.title\}/);
+  assert.match(source, /\{project\.descriptor\}/);
+  assert.match(source, /\{project\.scale\}/);
+  assert.match(source, /\{project\.problem\}/);
+  assert.match(source, /\{project\.role\}/);
+  assert.match(source, /\{project\.outcome\}/);
+  assert.doesNotMatch(source, /grid md:grid-cols-2/);
+  assert.doesNotMatch(source, /defaultValue=/);
+});
+
+test("Homepage content sections use a tighter consistent vertical rhythm", async () => {
+  const paths = [
+    "src/app/components/WhatIDo.tsx",
+    "src/app/components/ImpactHighlights.tsx",
+    "src/app/components/AIAndEmergingTechnology.tsx",
+    "src/app/components/SelectedWork.tsx",
+    "src/app/components/SystemsWorkedIn.tsx",
+    "src/app/components/SystemsApproach.tsx",
+    "src/app/components/Experience.tsx",
+    "src/app/components/CommunityLeadership.tsx",
+    "src/app/components/CaseStudyAccess.tsx",
+  ];
+
+  for (const path of paths) {
+    const source = await read(path);
+    assert.match(source, /py-10 md:py-20/, `${path} should use the shared compact section rhythm`);
+    assert.doesNotMatch(source, /py-16 md:py-24/, `${path} should not retain oversized section padding`);
+  }
 });
 
 test("Homepage section headings share the bold green-highlight treatment", async () => {
