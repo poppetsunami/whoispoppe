@@ -1,8 +1,9 @@
 import * as Accordion from "@radix-ui/react-accordion";
-import { ChevronDown, ExternalLink, Briefcase, Calendar } from "lucide-react";
+import { ExternalLink, Briefcase, Calendar } from "lucide-react";
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { SectionHeading } from "./SectionHeading";
+import { AccordionExploreRow, PortfolioCardAccent, portfolioCardClassName } from "./PortfolioAccordionCard";
 
 interface ExperienceItem {
   role: string;
@@ -137,41 +138,26 @@ export function Experience() {
         <SectionHeading label="Experience" accent="Experience" />
       </motion.div>
       
-      <Accordion.Root type="single" collapsible className="space-y-6">
+      <Accordion.Root type="single" collapsible className="space-y-4">
         {experiences.map((exp, index) => {
           const isCurrentRole = exp.dates.includes('Present');
           
           return (
             <motion.div
               key={index}
+              className={portfolioCardClassName}
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
+              <PortfolioCardAccent />
               <Accordion.Item 
                 value={`item-${index}`}
-                className="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden group/item relative shadow-sm hover:shadow-xl transition-all duration-300"
+                className="relative"
               >
-                {/* Animated gradient border on hover */}
-                <motion.div 
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(135deg, #6EDFA3, transparent)',
-                    padding: '2px',
-                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                    WebkitMaskComposite: 'xor',
-                    maskComposite: 'exclude',
-                  }}
-                />
-
-                {/* Decorative corner accent */}
-                <div className="absolute top-0 right-0 w-24 h-24 opacity-0 group-hover/item:opacity-10 transition-opacity duration-300 pointer-events-none">
-                  <div className="absolute inset-0 bg-gradient-to-bl from-[#6EDFA3] to-transparent rounded-2xl" />
-                </div>
-
                 <Accordion.Header>
-                  <Accordion.Trigger className="w-full px-8 py-8 flex items-start justify-between gap-6 text-left group relative z-10">
-                    <div className="flex-1 space-y-4">
+                  <Accordion.Trigger className="group relative z-10 w-full overflow-hidden px-5 py-5 text-left sm:px-7 sm:py-6">
+                    <div className="space-y-4">
                       {/* Top row: Role and Status Badge */}
                       <div className="flex items-start gap-3 flex-wrap">
                         <h3 
@@ -223,26 +209,14 @@ export function Experience() {
                       >
                         {exp.summary}
                       </p>
+                      <AccordionExploreRow label="Explore the role" />
                     </div>
-
-                    {/* Chevron button with background */}
-                    <motion.div
-                      className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 group-hover:bg-[#6EDFA3] group-hover:bg-opacity-10 flex items-center justify-center transition-colors"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <ChevronDown className="w-5 h-5 text-[#666666] group-data-[state=open]:rotate-180 transition-all duration-300" />
-                    </motion.div>
                   </Accordion.Trigger>
                 </Accordion.Header>
                 
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
                   {/* Divider line */}
-                  <div className="px-8">
-                    <div className="h-px bg-gradient-to-r from-[#6EDFA3] via-gray-200 to-transparent" />
-                  </div>
-
-                  <div className="px-8 pb-8 pt-6">
+                  <div className="border-t border-gray-200 px-5 pb-6 pt-5 sm:px-7 sm:pb-7">
                     <div className="space-y-6 relative">
                       {/* Overview Section */}
                       <motion.div

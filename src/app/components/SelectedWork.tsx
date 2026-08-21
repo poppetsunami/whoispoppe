@@ -1,8 +1,9 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
-import { Mail, ArrowRight, ChevronDown } from "lucide-react";
+import { Mail, ArrowRight } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
+import { AccordionExploreRow, PortfolioCardAccent, portfolioCardClassName } from "./PortfolioAccordionCard";
 
 interface ProjectCard {
   label: string;
@@ -94,12 +95,12 @@ const projects: ProjectCard[] = [
 function ProjectCard({ project, index, isVisible }: { project: ProjectCard; index: number; isVisible: boolean }) {
   return (
     <motion.div
-      className="group/card relative bg-white rounded-2xl border border-[#222222] overflow-hidden shadow-[0_8px_0_#d9d9d9,0_14px_28px_rgba(0,0,0,0.10)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_0_#6EDFA3,0_18px_34px_rgba(0,0,0,0.14)]"
+      className={portfolioCardClassName}
       initial={false}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.45, delay: index * 0.06 }}
     >
-      <div className="h-1.5 bg-[#6EDFA3]" aria-hidden="true" />
+      <PortfolioCardAccent />
       <Accordion.Item value={`project-${index}`}>
         <Accordion.Header>
           <Accordion.Trigger className="group relative w-full px-5 py-5 sm:px-7 sm:py-6 text-left overflow-hidden">
@@ -118,12 +119,7 @@ function ProjectCard({ project, index, isVisible }: { project: ProjectCard; inde
                   ))}
                 </div>
 
-                <div className="mt-5 flex items-center justify-between border-t border-gray-200 pt-4">
-                  <span className="text-xs font-bold text-[#111111]">Explore the work</span>
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#111111] text-[#6EDFA3] transition-colors group-hover:bg-[#222222]">
-                    <ChevronDown className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-180" aria-hidden="true" />
-                  </span>
-                </div>
+                <AccordionExploreRow label="Explore the work" />
               </div>
             </div>
           </Accordion.Trigger>

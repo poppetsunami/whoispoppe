@@ -299,11 +299,12 @@ test("Selected Work uses a compact single-open accordion with useful collapsed s
 
 test("Selected Work cards use editorial transformation hooks without decorative numbering", async () => {
   const source = await read("src/app/components/SelectedWork.tsx");
+  const sharedCard = await read("src/app/components/PortfolioAccordionCard.tsx");
 
   assert.doesNotMatch(source, /String\(index \+ 1\)\.padStart\(2, "0"\)/);
-  assert.match(source, /h-1\.5 bg-\[#6EDFA3\]/);
-  assert.match(source, /shadow-\[0_8px_0_#d9d9d9/);
-  assert.match(source, /hover:-translate-y-1/);
+  assert.match(sharedCard, /h-1\.5 bg-\[#6EDFA3\]/);
+  assert.match(sharedCard, /shadow-\[0_8px_0_#d9d9d9/);
+  assert.match(sharedCard, /hover:-translate-y-1/);
   assert.match(source, /rounded-full bg-\[#F1F1F1\]/);
   assert.match(source, /Explore the work/);
 
@@ -380,4 +381,27 @@ test("Homepage section headings share the bold green-highlight treatment", async
 test("KAMP engagement dates remain March 2025 through March 2026", async () => {
   const source = await read("src/app/components/Experience.tsx");
   assert.match(source, /company: "KAMP Technologies"[\s\S]*?dates: "Mar 2025 – Mar 2026"/);
+});
+
+test("Case study and experience cards share one visual and accordion interaction system", async () => {
+  const [selectedWork, experience, sharedCard] = await Promise.all([
+    read("src/app/components/SelectedWork.tsx"),
+    read("src/app/components/Experience.tsx"),
+    readOptional("src/app/components/PortfolioAccordionCard.tsx"),
+  ]);
+
+  for (const source of [selectedWork, experience]) {
+    assert.match(source, /portfolioCardClassName/);
+    assert.match(source, /<PortfolioCardAccent \/>/);
+    assert.match(source, /<AccordionExploreRow/);
+    assert.match(source, /<Accordion\.Root type="single" collapsible className="space-y-4">/);
+  }
+
+  assert.match(sharedCard, /h-1\.5 bg-\[#6EDFA3\]/);
+  assert.match(sharedCard, /shadow-\[0_8px_0_#d9d9d9/);
+  assert.match(sharedCard, /hover:-translate-y-1/);
+  assert.match(sharedCard, /group-data-\[state=open\]:rotate-180/);
+  assert.match(selectedWork, /label="Explore the work"/);
+  assert.match(experience, /label="Explore the role"/);
+  assert.doesNotMatch(experience, /Animated gradient border on hover|Decorative corner accent/);
 });
